@@ -1,5 +1,7 @@
 import { type Node, parse } from "./parser.js";
 
+const CSS_IDENTIFIER_START_REGEXP = /^-?[_a-zA-Z]+/;
+
 export function buildSelector(
 	node: Node,
 	conditionMap: Record<string, string>,
@@ -44,9 +46,12 @@ export function buildSelector(
 			if (!conditionSelector) {
 				throw new Error(`Unknown condition: ${node.name}`);
 			}
-			// check if selector starts with alphanumeric character, wrap in `:is()` to "escape it"
-			// when concatenating as part of "and"
-			if (context === "and" && /^[a-zA-Z0-9]/.test(conditionSelector)) {
+			// check if selector starts with a CSS identifier character, wrap in `:is()`
+			// to "escape it" when concatenating as part of "and"
+			if (
+				context === "and" &&
+				CSS_IDENTIFIER_START_REGEXP.test(conditionSelector)
+			) {
 				conditionSelector = `:is(${conditionSelector})`;
 			}
 			// apply `:not()` only if there's an odd number of negations
