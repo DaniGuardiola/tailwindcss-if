@@ -1,0 +1,344 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`simple expressions 1`] = `
+{
+  "_": "linux",
+  "selector": ".linux",
+}
+`;
+
+exports[`simple expressions 2`] = `
+{
+  "_": "(linux)",
+  "selector": ".linux",
+}
+`;
+
+exports[`simple expressions 3`] = `
+{
+  "_": "!mac",
+  "selector": ":not(.mac)",
+}
+`;
+
+exports[`simple expressions 4`] = `
+{
+  "_": "(!mac)",
+  "selector": ":not(.mac)",
+}
+`;
+
+exports[`simple expressions 5`] = `
+{
+  "_": "!(mac)",
+  "selector": ":not(.mac)",
+}
+`;
+
+exports[`simple expressions 6`] = `
+{
+  "_": "((mac))",
+  "selector": ".mac",
+}
+`;
+
+exports[`simple expressions 7`] = `
+{
+  "_": "((!(mac)))",
+  "selector": ":not(.mac)",
+}
+`;
+
+exports[`simple expressions 8`] = `
+{
+  "_": "(!(!(mac)))",
+  "selector": ".mac",
+}
+`;
+
+exports[`simple expressions 9`] = `
+{
+  "_": "!(!(!(mac)))",
+  "selector": ":not(.mac)",
+}
+`;
+
+exports[`simple expressions 10`] = `
+{
+  "_": "!(!(!(!mac)))",
+  "selector": ".mac",
+}
+`;
+
+exports[`simple expressions 11`] = `
+{
+  "_": "(((linux)))",
+  "selector": ".linux",
+}
+`;
+
+exports[`simple expressions 12`] = `
+{
+  "_": "!(!(!(!(!mac))))",
+  "selector": ":not(.mac)",
+}
+`;
+
+exports[`simple expressions 13`] = `
+{
+  "_": "!(!linux)",
+  "selector": ".linux",
+}
+`;
+
+exports[`complex expressions 1`] = `
+{
+  "_": "linux&!mac",
+  "selector": ".linux:not(.mac)",
+}
+`;
+
+exports[`complex expressions 2`] = `
+{
+  "_": "linux&!mac&win",
+  "selector": ".linux:not(.mac).win",
+}
+`;
+
+exports[`complex expressions 3`] = `
+{
+  "_": "linux&!mac&win&!win",
+  "selector": ".linux:not(.mac).win:not(.win)",
+}
+`;
+
+exports[`complex expressions 4`] = `
+{
+  "_": "(linux&!mac)",
+  "selector": ".linux:not(.mac)",
+}
+`;
+
+exports[`complex expressions 5`] = `
+{
+  "_": "linux&(!mac)",
+  "selector": ".linux:not(.mac)",
+}
+`;
+
+exports[`complex expressions 6`] = `
+{
+  "_": "(linux)&(!mac)",
+  "selector": ".linux:not(.mac)",
+}
+`;
+
+exports[`complex expressions 7`] = `
+{
+  "_": "(linux&!mac)&win",
+  "selector": ".linux:not(.mac).win",
+}
+`;
+
+exports[`complex expressions 8`] = `
+{
+  "_": "linux&(!mac&win)",
+  "selector": ".linux:not(.mac).win",
+}
+`;
+
+exports[`complex expressions 9`] = `
+{
+  "_": "(linux&!mac)&(win)",
+  "selector": ".linux:not(.mac).win",
+}
+`;
+
+exports[`complex expressions 10`] = `
+{
+  "_": "(linux)&(!mac&win)",
+  "selector": ".linux:not(.mac).win",
+}
+`;
+
+exports[`complex expressions 11`] = `
+{
+  "_": "(linux)&(!mac)&(win)",
+  "selector": ".linux:not(.mac).win",
+}
+`;
+
+exports[`complex expressions 12`] = `
+{
+  "_": "((linux)&(!mac)&(win))",
+  "selector": ".linux:not(.mac).win",
+}
+`;
+
+exports[`complex expressions 13`] = `
+{
+  "_": "linux&mac|win",
+  "selector": ":is(.linux.mac, .win)",
+}
+`;
+
+exports[`complex expressions 14`] = `
+{
+  "_": "linux&(mac|win)",
+  "selector": ".linux:is(.mac, .win)",
+}
+`;
+
+exports[`complex expressions 15`] = `
+{
+  "_": "(linux|mac)&win",
+  "selector": ":is(.linux, .mac).win",
+}
+`;
+
+exports[`complex expressions 16`] = `
+{
+  "_": "((linux&mac)|(!win&linux))",
+  "selector": ":is(.linux.mac, :not(.win).linux)",
+}
+`;
+
+exports[`complex expressions 17`] = `
+{
+  "_": "((linux&(!mac))&((win|linux)))",
+  "selector": ".linux:not(.mac):is(.win, .linux)",
+}
+`;
+
+exports[`complex expressions 18`] = `
+{
+  "_": "!linux&!mac",
+  "selector": ":not(.linux):not(.mac)",
+}
+`;
+
+exports[`complex expressions 19`] = `
+{
+  "_": "(linux|!mac)&win",
+  "selector": ":is(.linux, :not(.mac)).win",
+}
+`;
+
+exports[`complex expressions 20`] = `
+{
+  "_": "!(!linux&mac)|win",
+  "selector": ":is(:not(:not(.linux), .mac), .win)",
+}
+`;
+
+exports[`complex expressions 21`] = `
+{
+  "_": "((linux|mac)&(!win|linux))&win",
+  "selector": ":is(.linux, .mac):is(:not(.win), .linux).win",
+}
+`;
+
+exports[`'not' distributed over 'and' 1`] = `
+{
+  "_": "!(linux&mac)",
+  "selector": ":not(.linux, .mac)",
+}
+`;
+
+exports[`'not' distributed over 'and' 2`] = `
+{
+  "_": "!(linux&mac&win)",
+  "selector": ":not(.linux.mac, .win)",
+}
+`;
+
+exports[`'not' distributed over 'and' 3`] = `
+{
+  "_": "!(linux&!mac)",
+  "selector": ":not(.linux, :not(.mac))",
+}
+`;
+
+exports[`'not' distributed over 'and' 4`] = `
+{
+  "_": "!(!linux&mac)",
+  "selector": ":not(:not(.linux), .mac)",
+}
+`;
+
+exports[`'not' distributed over 'and' 5`] = `
+{
+  "_": "!(!(linux&mac))",
+  "selector": ".linux.mac",
+}
+`;
+
+exports[`'not' distributed over 'and' 6`] = `
+{
+  "_": "!(!(!linux&mac))",
+  "selector": ":not(.linux).mac",
+}
+`;
+
+exports[`'not' distributed over 'and' 7`] = `
+{
+  "_": "!(linux&mac)|win",
+  "selector": ":is(:not(.linux, .mac), .win)",
+}
+`;
+
+exports[`'not' distributed over 'and' 8`] = `
+{
+  "_": "!(linux|(mac&win))",
+  "selector": ":is(:not(.linux), :not(.mac):not(.win))",
+}
+`;
+
+exports[`'not' distributed over 'and' 9`] = `
+{
+  "_": "!(linux&mac)|!(win&mac)",
+  "selector": ":is(:not(.linux, .mac), :not(.win, .mac))",
+}
+`;
+
+exports[`'not' distributed over 'and' 10`] = `
+{
+  "_": "!((linux&mac)|(win&mac))",
+  "selector": ":is(:not(.linux):not(.mac), :not(.win):not(.mac))",
+}
+`;
+
+exports[`'not' distributed over 'and' 11`] = `
+{
+  "_": "!((!linux&mac)|!(!win&mac))",
+  "selector": ":is(.linux:not(.mac), :not(.win).mac)",
+}
+`;
+
+exports[`wrapped selectors 1`] = `
+{
+  "_": "linux|win",
+  "selector": ":is(.platform-linux, body.is-windows)",
+}
+`;
+
+exports[`wrapped selectors 2`] = `
+{
+  "_": "linux&win",
+  "selector": ".platform-linux:is(body.is-windows)",
+}
+`;
+
+exports[`wrapped selectors 3`] = `
+{
+  "_": "win",
+  "selector": "body.is-windows",
+}
+`;
+
+exports[`wrapped selectors 4`] = `
+{
+  "_": "!win",
+  "selector": ":not(body.is-windows)",
+}
+`;

@@ -1,0 +1,762 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`static variants: simple conditions 1`] = `
+{
+  "_": "linux:italic mac:block win:hidden",
+  "css": 
+".platform-linux .test {
+    font-style: italic
+}
+[data-platform-mac] .test {
+    display: block
+}
+body.is-windows .test {
+    display: none
+}"
+,
+}
+`;
+
+exports[`static variants: simple negated conditions 1`] = `
+{
+  "_": "not-linux:italic not-mac:block not-win:hidden",
+  "css": 
+":not(.platform-linux) .test {
+    font-style: italic
+}
+:not([data-platform-mac]) .test {
+    display: block
+}
+:not(body.is-windows) .test {
+    display: none
+}"
+,
+}
+`;
+
+exports[`static variants: combined simple conditions 1`] = `
+{
+  "_": "not-linux:not-mac:underline win:linux:line-through",
+  "css": 
+":not(.platform-linux) :not([data-platform-mac]) .test {
+    text-decoration-line: underline
+}
+body.is-windows .platform-linux .test {
+    text-decoration-line: line-through
+}"
+,
+}
+`;
+
+exports[`static variants: invalid conditions 1`] = `
+{
+  "_": "mac:fridge:line-through win:gba:underline",
+  "css": 
+"CssSyntaxError: /home/dani/projects/tailwind-if/test.css:1:7: The \`mac:fridge:line-through\` class does not exist. If \`mac:fridge:line-through\` is a custom class, make sure it is defined within a \`@layer\` directive.
+
+[1m[31m>[39m[22m[90m 1 | [39m[33m.test[39m[33m{[39m[36m@apply[39m mac[33m:[39mfridge[33m:[39mline-through win[33m:[39mgba[33m:[39munderline[33m;[39m[33m}[39m
+ [90m   | [39m      [1m[31m^[39m[22m
+"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 1`] = `
+{
+  "_": "if-[linux]:italic",
+  "css": 
+".platform-linux .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 2`] = `
+{
+  "_": "if-[(linux)]:italic",
+  "css": 
+".platform-linux .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 3`] = `
+{
+  "_": "if-[!mac]:italic",
+  "css": 
+":not([data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 4`] = `
+{
+  "_": "if-[(!mac)]:italic",
+  "css": 
+":not([data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 5`] = `
+{
+  "_": "if-[!(mac)]:italic",
+  "css": 
+":not([data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 6`] = `
+{
+  "_": "if-[(mac)]:italic",
+  "css": 
+"[data-platform-mac] .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 7`] = `
+{
+  "_": "if-[(mac)]:italic",
+  "css": 
+"[data-platform-mac] .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 8`] = `
+{
+  "_": "if-[(!(!(mac)))]:italic",
+  "css": 
+"[data-platform-mac] .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 9`] = `
+{
+  "_": "if-[!(!(!(mac)))]:italic",
+  "css": 
+":not([data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 10`] = `
+{
+  "_": "if-[!(!(!(!mac)))]:italic",
+  "css": 
+"[data-platform-mac] .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 11`] = `
+{
+  "_": "if-[(((linux)))]:italic",
+  "css": 
+".platform-linux .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 12`] = `
+{
+  "_": "if-[!(!(!(!(!mac))))]:italic",
+  "css": 
+":not([data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: simple expressions 13`] = `
+{
+  "_": "if-[!(!linux)]:italic",
+  "css": 
+".platform-linux .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 1`] = `
+{
+  "_": "if-[linux&!mac]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 2`] = `
+{
+  "_": "if-[linux&!mac&win]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]):is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 3`] = `
+{
+  "_": "if-[linux&!mac&win&!win]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]):is(body.is-windows):not(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 4`] = `
+{
+  "_": "if-[(linux&!mac)]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 5`] = `
+{
+  "_": "if-[linux&(!mac)]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 6`] = `
+{
+  "_": "if-[(linux)&(!mac)]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 7`] = `
+{
+  "_": "if-[(linux&!mac)&win]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]):is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 8`] = `
+{
+  "_": "if-[linux&(!mac&win)]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]):is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 9`] = `
+{
+  "_": "if-[(linux&!mac)&(win)]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]):is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 10`] = `
+{
+  "_": "if-[(linux)&(!mac&win)]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]):is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 11`] = `
+{
+  "_": "if-[(linux)&(!mac)&(win)]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]):is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 12`] = `
+{
+  "_": "if-[((linux)&(!mac)&(win))]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]):is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 13`] = `
+{
+  "_": "if-[linux&mac|win]:italic",
+  "css": 
+":is(.platform-linux[data-platform-mac], body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 14`] = `
+{
+  "_": "if-[linux&(mac|win)]:italic",
+  "css": 
+".platform-linux:is([data-platform-mac], body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 15`] = `
+{
+  "_": "if-[(linux|mac)&win]:italic",
+  "css": 
+":is(.platform-linux, [data-platform-mac]):is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 16`] = `
+{
+  "_": "if-[((linux&mac)|(!win&linux))]:italic",
+  "css": 
+":is(.platform-linux[data-platform-mac], :not(body.is-windows).platform-linux) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 17`] = `
+{
+  "_": "if-[((linux&(!mac))&((win|linux)))]:italic",
+  "css": 
+".platform-linux:not([data-platform-mac]):is(body.is-windows, .platform-linux) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 18`] = `
+{
+  "_": "if-[!linux&!mac]:italic",
+  "css": 
+":not(.platform-linux):not([data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 19`] = `
+{
+  "_": "if-[(linux|!mac)&win]:italic",
+  "css": 
+":is(.platform-linux, :not([data-platform-mac])):is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 20`] = `
+{
+  "_": "if-[!(!linux&mac)|win]:italic",
+  "css": 
+":is(:not(:not(.platform-linux), [data-platform-mac]), body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: complex expressions 21`] = `
+{
+  "_": "if-[((linux|mac)&(!win|linux))&win]:italic",
+  "css": 
+":is(.platform-linux, [data-platform-mac]):is(:not(body.is-windows), .platform-linux):is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 1`] = `
+{
+  "_": "if-[!(linux&mac)]:italic",
+  "css": 
+":not(.platform-linux, [data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 2`] = `
+{
+  "_": "if-[!(linux&mac&win)]:italic",
+  "css": 
+":not(.platform-linux[data-platform-mac], :is(body.is-windows)) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 3`] = `
+{
+  "_": "if-[!(linux&!mac)]:italic",
+  "css": 
+":not(.platform-linux, :not([data-platform-mac])) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 4`] = `
+{
+  "_": "if-[!(!linux&mac)]:italic",
+  "css": 
+":not(:not(.platform-linux), [data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 5`] = `
+{
+  "_": "if-[!(!(linux&mac))]:italic",
+  "css": 
+".platform-linux[data-platform-mac] .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 6`] = `
+{
+  "_": "if-[!(!(!linux&mac))]:italic",
+  "css": 
+":not(.platform-linux)[data-platform-mac] .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 7`] = `
+{
+  "_": "if-[!(linux&mac)|win]:italic",
+  "css": 
+":is(:not(.platform-linux, [data-platform-mac]), body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 8`] = `
+{
+  "_": "if-[!(linux|(mac&win))]:italic",
+  "css": 
+":is(:not(.platform-linux), :not([data-platform-mac]):not(:is(body.is-windows))) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 9`] = `
+{
+  "_": "if-[!(linux&mac)|!(win&mac)]:italic",
+  "css": 
+":is(:not(.platform-linux, [data-platform-mac]), :not(:is(body.is-windows), [data-platform-mac])) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 10`] = `
+{
+  "_": "if-[!((linux&mac)|(win&mac))]:italic",
+  "css": 
+":is(:not(.platform-linux):not([data-platform-mac]), :not(:is(body.is-windows)):not([data-platform-mac])) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: 'not' distributed over 'and' 11`] = `
+{
+  "_": "if-[!((!linux&mac)|!(!win&mac))]:italic",
+  "css": 
+":is(.platform-linux:not([data-platform-mac]), :not(body.is-windows)[data-platform-mac]) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: wrapped selectors 1`] = `
+{
+  "_": "if-[linux|win]:italic",
+  "css": 
+":is(.platform-linux, body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: wrapped selectors 2`] = `
+{
+  "_": "if-[linux&win]:italic",
+  "css": 
+".platform-linux:is(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: wrapped selectors 3`] = `
+{
+  "_": "if-[win]:italic",
+  "css": 
+"body.is-windows .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: wrapped selectors 4`] = `
+{
+  "_": "if-[!win]:italic",
+  "css": 
+":not(body.is-windows) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`dynamic variants: unknown conditions 1`] = `
+{
+  "_": "if-[unknown]:italic",
+  "css": 
+"CssSyntaxError: /home/dani/projects/tailwind-if/test.css:1:7: The \`if-[unknown]:italic\` class does not exist. If \`if-[unknown]:italic\` is a custom class, make sure it is defined within a \`@layer\` directive.
+
+[1m[31m>[39m[22m[90m 1 | [39m[33m.test[39m[33m{[39m[36m@apply[39m if-[33m[[39munknown[33m][39m[33m:[39mitalic[33m;[39m[33m}[39m
+ [90m   | [39m      [1m[31m^[39m[22m
+"
+,
+}
+`;
+
+exports[`dynamic variants: unknown conditions 2`] = `
+{
+  "_": "if-[win|unknown]:italic",
+  "css": 
+"CssSyntaxError: /home/dani/projects/tailwind-if/test.css:1:7: The \`if-[win|unknown]:italic\` class does not exist. If \`if-[win|unknown]:italic\` is a custom class, make sure it is defined within a \`@layer\` directive.
+
+[1m[31m>[39m[22m[90m 1 | [39m[33m.test[39m[33m{[39m[36m@apply[39m if-[33m[[39mwin|unknown[33m][39m[33m:[39mitalic[33m;[39m[33m}[39m
+ [90m   | [39m      [1m[31m^[39m[22m
+"
+,
+}
+`;
+
+exports[`weak specificity 1`] = `
+{
+  "_": "linux:italic mac:block win:hidden",
+  "css": 
+".platform-linux .test {
+    font-style: italic
+}
+[data-platform-mac] .test {
+    display: block
+}
+body.is-windows .test {
+    display: none
+}"
+,
+}
+`;
+
+exports[`weak specificity 2`] = `
+{
+  "_": "linux:italic mac:block win:hidden",
+  "css": 
+".platform-linux .test {
+    font-style: italic
+}
+[data-platform-mac] .test {
+    display: block
+}
+body.is-windows .test {
+    display: none
+}"
+,
+}
+`;
+
+exports[`weak specificity 3`] = `
+{
+  "_": "linux:italic mac:block win:hidden",
+  "css": 
+":where(.platform-linux) .test {
+    font-style: italic
+}
+:where([data-platform-mac]) .test {
+    display: block
+}
+:where(body.is-windows) .test {
+    display: none
+}"
+,
+}
+`;
+
+exports[`weak specificity 4`] = `
+{
+  "_": "not-linux:italic not-mac:block not-win:hidden",
+  "css": 
+":not(.platform-linux) .test {
+    font-style: italic
+}
+:not([data-platform-mac]) .test {
+    display: block
+}
+:not(body.is-windows) .test {
+    display: none
+}"
+,
+}
+`;
+
+exports[`weak specificity 5`] = `
+{
+  "_": "not-linux:italic not-mac:block not-win:hidden",
+  "css": 
+":not(.platform-linux) .test {
+    font-style: italic
+}
+:not([data-platform-mac]) .test {
+    display: block
+}
+:not(body.is-windows) .test {
+    display: none
+}"
+,
+}
+`;
+
+exports[`weak specificity 6`] = `
+{
+  "_": "not-linux:italic not-mac:block not-win:hidden",
+  "css": 
+":where(:not(.platform-linux)) .test {
+    font-style: italic
+}
+:where(:not([data-platform-mac])) .test {
+    display: block
+}
+:where(:not(body.is-windows)) .test {
+    display: none
+}"
+,
+}
+`;
+
+exports[`weak specificity 7`] = `
+{
+  "_": "if-[((linux&mac)|(!win&linux))]:italic",
+  "css": 
+":is(.platform-linux[data-platform-mac], :not(body.is-windows).platform-linux) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`weak specificity 8`] = `
+{
+  "_": "if-[((linux&mac)|(!win&linux))]:italic",
+  "css": 
+":is(.platform-linux[data-platform-mac], :not(body.is-windows).platform-linux) .test {
+    font-style: italic
+}"
+,
+}
+`;
+
+exports[`weak specificity 9`] = `
+{
+  "_": "if-[((linux&mac)|(!win&linux))]:italic",
+  "css": 
+":where(:is(.platform-linux[data-platform-mac], :not(body.is-windows).platform-linux)) .test {
+    font-style: italic
+}"
+,
+}
+`;

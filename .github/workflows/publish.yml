@@ -14,9 +14,6 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
       - run: bun install --frozen-lockfile --ignore-scripts
       - name: Create release pull request or publish
         id: changesets

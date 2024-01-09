@@ -1,0 +1,1320 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`valid simple expressions 1`] = `
+{
+  "_": "linux",
+  "ast": {
+    "name": "linux",
+    "type": "condition",
+  },
+}
+`;
+
+exports[`valid simple expressions 2`] = `
+{
+  "_": "(linux)",
+  "ast": {
+    "name": "linux",
+    "type": "condition",
+  },
+}
+`;
+
+exports[`valid simple expressions 3`] = `
+{
+  "_": "!mac",
+  "ast": {
+    "operand": {
+      "name": "mac",
+      "type": "condition",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`valid simple expressions 4`] = `
+{
+  "_": "(!mac)",
+  "ast": {
+    "operand": {
+      "name": "mac",
+      "type": "condition",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`valid simple expressions 5`] = `
+{
+  "_": "!(mac)",
+  "ast": {
+    "operand": {
+      "name": "mac",
+      "type": "condition",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`valid simple expressions 6`] = `
+{
+  "_": "((mac))",
+  "ast": {
+    "name": "mac",
+    "type": "condition",
+  },
+}
+`;
+
+exports[`valid simple expressions 7`] = `
+{
+  "_": "((!(mac)))",
+  "ast": {
+    "operand": {
+      "name": "mac",
+      "type": "condition",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`valid simple expressions 8`] = `
+{
+  "_": "(!(!(mac)))",
+  "ast": {
+    "operand": {
+      "operand": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`valid simple expressions 9`] = `
+{
+  "_": "!(!(!(mac)))",
+  "ast": {
+    "operand": {
+      "operand": {
+        "operand": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`valid simple expressions 10`] = `
+{
+  "_": "!(!(!(!mac)))",
+  "ast": {
+    "operand": {
+      "operand": {
+        "operand": {
+          "operand": {
+            "name": "mac",
+            "type": "condition",
+          },
+          "operator": "not",
+          "type": "unary",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`valid simple expressions 11`] = `
+{
+  "_": "(((linux)))",
+  "ast": {
+    "name": "linux",
+    "type": "condition",
+  },
+}
+`;
+
+exports[`valid simple expressions 12`] = `
+{
+  "_": "!(!(!(!(!mac))))",
+  "ast": {
+    "operand": {
+      "operand": {
+        "operand": {
+          "operand": {
+            "operand": {
+              "name": "mac",
+              "type": "condition",
+            },
+            "operator": "not",
+            "type": "unary",
+          },
+          "operator": "not",
+          "type": "unary",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`valid simple expressions 13`] = `
+{
+  "_": "!(!linux)",
+  "ast": {
+    "operand": {
+      "operand": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`invalid simple expressions 1`] = `
+{
+  "_": "linux!",
+  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+}
+`;
+
+exports[`invalid simple expressions 2`] = `
+{
+  "_": "(linux!)",
+  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+}
+`;
+
+exports[`invalid simple expressions 3`] = `
+{
+  "_": "(linux)!",
+  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+}
+`;
+
+exports[`invalid simple expressions 4`] = `
+{
+  "_": "mac!linux",
+  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+}
+`;
+
+exports[`invalid simple expressions 5`] = `
+{
+  "_": "(mac)linux",
+  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found condition",
+}
+`;
+
+exports[`invalid simple expressions 6`] = `
+{
+  "_": "mac!(linux)",
+  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+}
+`;
+
+exports[`invalid simple expressions 7`] = `
+{
+  "_": "!!mac",
+  "ast": "SyntaxError: Expected one of 'open-paren, condition', found not",
+}
+`;
+
+exports[`invalid simple expressions 8`] = `
+{
+  "_": "()",
+  "ast": "SyntaxError: Unexpected token: close-paren",
+}
+`;
+
+exports[`invalid simple expressions 9`] = `
+{
+  "_": "(mac))",
+  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+}
+`;
+
+exports[`invalid simple expressions 10`] = `
+{
+  "_": "(mac))linux",
+  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+}
+`;
+
+exports[`invalid simple expressions 11`] = `
+{
+  "_": "(mac))hello!123",
+  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+}
+`;
+
+exports[`invalid simple expressions 12`] = `
+{
+  "_": "((mac)",
+  "ast": "SyntaxError: Expected close-paren, found end of expression",
+}
+`;
+
+exports[`invalid simple expressions 13`] = `
+{
+  "_": "(((mac)",
+  "ast": "SyntaxError: Expected close-paren, found end of expression",
+}
+`;
+
+exports[`invalid simple expressions 14`] = `
+{
+  "_": "mac))",
+  "ast": "SyntaxError: Unexpected token: close-paren at position 1",
+}
+`;
+
+exports[`invalid simple expressions 15`] = `
+{
+  "_": "linux#",
+  "ast": "SyntaxError: Unexpected character: #",
+}
+`;
+
+exports[`invalid simple expressions 16`] = `
+{
+  "_": "ma(c)",
+  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found open-paren",
+}
+`;
+
+exports[`invalid simple expressions 17`] = `
+{
+  "_": "",
+  "ast": "SyntaxError: Empty expression",
+}
+`;
+
+exports[`invalid simple expressions 18`] = `
+{
+  "_": "(",
+  "ast": "SyntaxError: Unexpected end of expression",
+}
+`;
+
+exports[`invalid simple expressions 19`] = `
+{
+  "_": ")",
+  "ast": "SyntaxError: Unexpected token: close-paren",
+}
+`;
+
+exports[`invalid simple expressions 20`] = `
+{
+  "_": "!",
+  "ast": "SyntaxError: Unexpected end of expression",
+}
+`;
+
+exports[`invalid simple expressions 21`] = `
+{
+  "_": "&",
+  "ast": "SyntaxError: Unexpected token: and",
+}
+`;
+
+exports[`invalid simple expressions 22`] = `
+{
+  "_": "|",
+  "ast": "SyntaxError: Unexpected token: or",
+}
+`;
+
+exports[`invalid simple expressions 23`] = `
+{
+  "_": "linux&",
+  "ast": "SyntaxError: Unexpected end of expression",
+}
+`;
+
+exports[`invalid simple expressions 24`] = `
+{
+  "_": "linux|",
+  "ast": "SyntaxError: Unexpected end of expression",
+}
+`;
+
+exports[`invalid simple expressions 25`] = `
+{
+  "_": "&linux",
+  "ast": "SyntaxError: Unexpected token: and",
+}
+`;
+
+exports[`invalid simple expressions 26`] = `
+{
+  "_": "|linux",
+  "ast": "SyntaxError: Unexpected token: or",
+}
+`;
+
+exports[`invalid simple expressions 27`] = `
+{
+  "_": " ( linux ) ",
+  "ast": "SyntaxError: Unexpected character:  ",
+}
+`;
+
+exports[`invalid simple expressions 28`] = `
+{
+  "_": "mac linux",
+  "ast": "SyntaxError: Unexpected character:  ",
+}
+`;
+
+exports[`invalid simple expressions 29`] = `
+{
+  "_": "((linux))()",
+  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found open-paren",
+}
+`;
+
+exports[`invalid simple expressions 30`] = `
+{
+  "_": "(()linux)",
+  "ast": "SyntaxError: Unexpected token: close-paren",
+}
+`;
+
+exports[`invalid simple expressions 31`] = `
+{
+  "_": "(linux))(",
+  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+}
+`;
+
+exports[`invalid simple expressions 32`] = `
+{
+  "_": "!!!",
+  "ast": "SyntaxError: Expected one of 'open-paren, condition', found not",
+}
+`;
+
+exports[`invalid simple expressions 33`] = `
+{
+  "_": "&&&",
+  "ast": "SyntaxError: Unexpected token: and",
+}
+`;
+
+exports[`invalid simple expressions 34`] = `
+{
+  "_": "|||",
+  "ast": "SyntaxError: Unexpected token: or",
+}
+`;
+
+exports[`invalid simple expressions 35`] = `
+{
+  "_": "!!!linux",
+  "ast": "SyntaxError: Expected one of 'open-paren, condition', found not",
+}
+`;
+
+exports[`invalid simple expressions 36`] = `
+{
+  "_": "!!!(!!!linux)",
+  "ast": "SyntaxError: Expected one of 'open-paren, condition', found not",
+}
+`;
+
+exports[`valid complex expressions 1`] = `
+{
+  "_": "linux&!mac",
+  "ast": {
+    "left": {
+      "name": "linux",
+      "type": "condition",
+    },
+    "operator": "and",
+    "right": {
+      "operand": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 2`] = `
+{
+  "_": "linux&!mac&win",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "and",
+      "right": {
+        "operand": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "type": "binary",
+    },
+    "operator": "and",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 3`] = `
+{
+  "_": "linux&!mac&win&!win",
+  "ast": {
+    "left": {
+      "left": {
+        "left": {
+          "name": "linux",
+          "type": "condition",
+        },
+        "operator": "and",
+        "right": {
+          "operand": {
+            "name": "mac",
+            "type": "condition",
+          },
+          "operator": "not",
+          "type": "unary",
+        },
+        "type": "binary",
+      },
+      "operator": "and",
+      "right": {
+        "name": "win",
+        "type": "condition",
+      },
+      "type": "binary",
+    },
+    "operator": "and",
+    "right": {
+      "operand": {
+        "name": "win",
+        "type": "condition",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 4`] = `
+{
+  "_": "(linux&!mac)",
+  "ast": {
+    "left": {
+      "name": "linux",
+      "type": "condition",
+    },
+    "operator": "and",
+    "right": {
+      "operand": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 5`] = `
+{
+  "_": "linux&(!mac)",
+  "ast": {
+    "left": {
+      "name": "linux",
+      "type": "condition",
+    },
+    "operator": "and",
+    "right": {
+      "operand": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 6`] = `
+{
+  "_": "(linux)&(!mac)",
+  "ast": {
+    "left": {
+      "name": "linux",
+      "type": "condition",
+    },
+    "operator": "and",
+    "right": {
+      "operand": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 7`] = `
+{
+  "_": "(linux&!mac)&win",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "and",
+      "right": {
+        "operand": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "type": "binary",
+    },
+    "operator": "and",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 8`] = `
+{
+  "_": "linux&(!mac&win)",
+  "ast": {
+    "left": {
+      "name": "linux",
+      "type": "condition",
+    },
+    "operator": "and",
+    "right": {
+      "left": {
+        "operand": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "operator": "and",
+      "right": {
+        "name": "win",
+        "type": "condition",
+      },
+      "type": "binary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 9`] = `
+{
+  "_": "(linux&!mac)&(win)",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "and",
+      "right": {
+        "operand": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "type": "binary",
+    },
+    "operator": "and",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 10`] = `
+{
+  "_": "(linux)&(!mac&win)",
+  "ast": {
+    "left": {
+      "name": "linux",
+      "type": "condition",
+    },
+    "operator": "and",
+    "right": {
+      "left": {
+        "operand": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "operator": "and",
+      "right": {
+        "name": "win",
+        "type": "condition",
+      },
+      "type": "binary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 11`] = `
+{
+  "_": "(linux)&(!mac)&(win)",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "and",
+      "right": {
+        "operand": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "type": "binary",
+    },
+    "operator": "and",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 12`] = `
+{
+  "_": "((linux)&(!mac)&(win))",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "and",
+      "right": {
+        "operand": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "type": "binary",
+    },
+    "operator": "and",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 13`] = `
+{
+  "_": "linux&mac|win",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "and",
+      "right": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "type": "binary",
+    },
+    "operator": "or",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 14`] = `
+{
+  "_": "linux&(mac|win)",
+  "ast": {
+    "left": {
+      "name": "linux",
+      "type": "condition",
+    },
+    "operator": "and",
+    "right": {
+      "left": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "operator": "or",
+      "right": {
+        "name": "win",
+        "type": "condition",
+      },
+      "type": "binary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 15`] = `
+{
+  "_": "(linux|mac)&win",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "or",
+      "right": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "type": "binary",
+    },
+    "operator": "and",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 16`] = `
+{
+  "_": "((linux&mac)|(!win&linux))",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "and",
+      "right": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "type": "binary",
+    },
+    "operator": "or",
+    "right": {
+      "left": {
+        "operand": {
+          "name": "win",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "operator": "and",
+      "right": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "type": "binary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 17`] = `
+{
+  "_": "((linux&(!mac))&((win|linux)))",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "and",
+      "right": {
+        "operand": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "type": "binary",
+    },
+    "operator": "and",
+    "right": {
+      "left": {
+        "name": "win",
+        "type": "condition",
+      },
+      "operator": "or",
+      "right": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "type": "binary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 18`] = `
+{
+  "_": "!linux&!mac",
+  "ast": {
+    "left": {
+      "operand": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "operator": "and",
+    "right": {
+      "operand": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 19`] = `
+{
+  "_": "(linux|!mac)&win",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "or",
+      "right": {
+        "operand": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "operator": "not",
+        "type": "unary",
+      },
+      "type": "binary",
+    },
+    "operator": "and",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 20`] = `
+{
+  "_": "!(!linux&mac)|win",
+  "ast": {
+    "left": {
+      "operand": {
+        "left": {
+          "operand": {
+            "name": "linux",
+            "type": "condition",
+          },
+          "operator": "not",
+          "type": "unary",
+        },
+        "operator": "and",
+        "right": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "type": "binary",
+      },
+      "operator": "not",
+      "type": "unary",
+    },
+    "operator": "or",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`valid complex expressions 21`] = `
+{
+  "_": "((linux|mac)&(!win|linux))&win",
+  "ast": {
+    "left": {
+      "left": {
+        "left": {
+          "name": "linux",
+          "type": "condition",
+        },
+        "operator": "or",
+        "right": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "type": "binary",
+      },
+      "operator": "and",
+      "right": {
+        "left": {
+          "operand": {
+            "name": "win",
+            "type": "condition",
+          },
+          "operator": "not",
+          "type": "unary",
+        },
+        "operator": "or",
+        "right": {
+          "name": "linux",
+          "type": "condition",
+        },
+        "type": "binary",
+      },
+      "type": "binary",
+    },
+    "operator": "and",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
+
+exports[`invalid complex expressions 1`] = `
+{
+  "_": "linux&|mac",
+  "ast": "SyntaxError: Expected one of 'open-paren, condition, not', found or",
+}
+`;
+
+exports[`invalid complex expressions 2`] = `
+{
+  "_": "linux&&mac",
+  "ast": "SyntaxError: Expected one of 'open-paren, condition, not', found and",
+}
+`;
+
+exports[`invalid complex expressions 3`] = `
+{
+  "_": "&|",
+  "ast": "SyntaxError: Unexpected token: and",
+}
+`;
+
+exports[`invalid complex expressions 4`] = `
+{
+  "_": "&&||",
+  "ast": "SyntaxError: Unexpected token: and",
+}
+`;
+
+exports[`invalid complex expressions 5`] = `
+{
+  "_": "(linux&mac",
+  "ast": "SyntaxError: Expected close-paren, found end of expression",
+}
+`;
+
+exports[`invalid complex expressions 6`] = `
+{
+  "_": "linux&mac))",
+  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+}
+`;
+
+exports[`invalid complex expressions 7`] = `
+{
+  "_": "linux&",
+  "ast": "SyntaxError: Unexpected end of expression",
+}
+`;
+
+exports[`invalid complex expressions 8`] = `
+{
+  "_": "&mac",
+  "ast": "SyntaxError: Unexpected token: and",
+}
+`;
+
+exports[`invalid complex expressions 9`] = `
+{
+  "_": "linux||",
+  "ast": "SyntaxError: Expected one of 'open-paren, condition, not', found or",
+}
+`;
+
+exports[`invalid complex expressions 10`] = `
+{
+  "_": "linux&",
+  "ast": "SyntaxError: Unexpected end of expression",
+}
+`;
+
+exports[`invalid complex expressions 11`] = `
+{
+  "_": "&mac",
+  "ast": "SyntaxError: Unexpected token: and",
+}
+`;
+
+exports[`invalid complex expressions 12`] = `
+{
+  "_": "linux||",
+  "ast": "SyntaxError: Expected one of 'open-paren, condition, not', found or",
+}
+`;
+
+exports[`invalid complex expressions 13`] = `
+{
+  "_": "((linux&mac",
+  "ast": "SyntaxError: Expected close-paren, found end of expression",
+}
+`;
+
+exports[`invalid complex expressions 14`] = `
+{
+  "_": "linux&mac))",
+  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+}
+`;
+
+exports[`invalid complex expressions 15`] = `
+{
+  "_": "(linux|mac)&(win",
+  "ast": "SyntaxError: Expected close-paren, found end of expression",
+}
+`;
+
+exports[`mixed valid and invalid expressions 1`] = `
+{
+  "_": "linux&(mac",
+  "ast": "SyntaxError: Expected close-paren, found end of expression",
+}
+`;
+
+exports[`mixed valid and invalid expressions 2`] = `
+{
+  "_": "!(linux&mac))",
+  "ast": "SyntaxError: Unexpected token: close-paren at position 6",
+}
+`;
+
+exports[`mixed valid and invalid expressions 3`] = `
+{
+  "_": "linux&(mac!)",
+  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+}
+`;
+
+exports[`mixed valid and invalid expressions 4`] = `
+{
+  "_": "(linux&!mac)|win)",
+  "ast": "SyntaxError: Unexpected token: close-paren at position 8",
+}
+`;
+
+exports[`edge case expressions 1`] = `
+{
+  "_": "a",
+  "ast": {
+    "name": "a",
+    "type": "condition",
+  },
+}
+`;
+
+exports[`edge case expressions 2`] = `
+{
+  "_": "!b",
+  "ast": {
+    "operand": {
+      "name": "b",
+      "type": "condition",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`edge case expressions 3`] = `
+{
+  "_": "thisIsAVeryLongConditionName",
+  "ast": {
+    "name": "thisIsAVeryLongConditionName",
+    "type": "condition",
+  },
+}
+`;
+
+exports[`edge case expressions 4`] = `
+{
+  "_": "!thisIsAnotherVeryLongConditionName",
+  "ast": {
+    "operand": {
+      "name": "thisIsAnotherVeryLongConditionName",
+      "type": "condition",
+    },
+    "operator": "not",
+    "type": "unary",
+  },
+}
+`;
+
+exports[`edge case expressions 5`] = `
+{
+  "_": "condition123",
+  "ast": {
+    "name": "condition123",
+    "type": "condition",
+  },
+}
+`;
+
+exports[`edge case expressions 6`] = `
+{
+  "_": "123condition",
+  "ast": {
+    "name": "123condition",
+    "type": "condition",
+  },
+}
+`;
+
+exports[`edge case expressions 7`] = `
+{
+  "_": "linux&mac|win",
+  "ast": {
+    "left": {
+      "left": {
+        "name": "linux",
+        "type": "condition",
+      },
+      "operator": "and",
+      "right": {
+        "name": "mac",
+        "type": "condition",
+      },
+      "type": "binary",
+    },
+    "operator": "or",
+    "right": {
+      "name": "win",
+      "type": "condition",
+    },
+    "type": "binary",
+  },
+}
+`;
