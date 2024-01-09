@@ -11,7 +11,7 @@ export function constructAst(tokens: Token[]) {
 	function parseExpression(): Node {
 		let node = parsePrimary();
 
-		while (current < tokens.length && isOperator(tokens[current])) {
+		while (current < tokens.length && isOperator(tokens.at(current))) {
 			node = parseBinary(node);
 		}
 
@@ -19,10 +19,7 @@ export function constructAst(tokens: Token[]) {
 	}
 
 	function parsePrimary(): Node {
-		const token = tokens.at(current);
-		if (!token) {
-			throw new SyntaxError("Unexpected end of expression");
-		}
+		const token = getToken();
 
 		switch (token.type) {
 			case "open-paren": {
@@ -48,9 +45,9 @@ export function constructAst(tokens: Token[]) {
 	}
 
 	function parseBinary(left: Node): Node {
-		const token = tokens[current];
+		const token = getToken();
 		if (!isOperator(token)) {
-			throw new SyntaxError("Expected operator");
+			throw new SyntaxError(`Unexpected token: ${token.type}`);
 		}
 		const operator = token.type;
 		current++;
@@ -60,25 +57,31 @@ export function constructAst(tokens: Token[]) {
 		return { type: "binary", operator, left, right };
 	}
 
+	function getToken() {
+		const token = tokens.at(current);
+		if (!token) {
+			throw new SyntaxError("Unexpected end of expression");
+		}
+		return token;
+	}
+
 	function checkTokenIsValid(allowedTypes: string[]) {
-		if (tokens[current] && !allowedTypes.includes(tokens[current].type)) {
+		const token = tokens.at(current);
+		if (token && !allowedTypes.includes(token.type)) {
 			throw new SyntaxError(
-				`Expected one of '${allowedTypes.join(", ")}', found ${
-					tokens[current].type
-				}`,
+				`Unexpected token: ${token.type}, expected one of: ${allowedTypes.join(
+					", ",
+				)}`,
 			);
 		}
 	}
 
 	function expectToken(type: string) {
-		if (tokens[current]?.type === type) {
+		const token = getToken();
+		if (token.type === type) {
 			current++;
 		} else {
-			throw new SyntaxError(
-				`Expected ${type}, found ${
-					tokens[current]?.type ?? "end of expression"
-				}`,
-			);
+			throw new SyntaxError(`Expected ${type}, found ${token.type}`);
 		}
 	}
 
@@ -88,10 +91,9 @@ export function constructAst(tokens: Token[]) {
 
 	const ast = parseExpression();
 
-	if (current !== tokens.length) {
-		throw new SyntaxError(
-			`Unexpected token: ${tokens[current].type} at position ${current}`,
-		);
+	const extraToken = tokens.at(current);
+	if (extraToken) {
+		throw new SyntaxError(`Unexpected token: ${extraToken.type}`);
 	}
 
 	return ast;

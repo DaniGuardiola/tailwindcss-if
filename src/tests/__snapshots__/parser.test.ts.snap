@@ -213,49 +213,49 @@ exports[`valid simple expressions 13`] = `
 exports[`invalid simple expressions 1`] = `
 {
   "_": "linux!",
-  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+  "ast": "SyntaxError: Unexpected token: not, expected one of: and, or, close-paren",
 }
 `;
 
 exports[`invalid simple expressions 2`] = `
 {
   "_": "(linux!)",
-  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+  "ast": "SyntaxError: Unexpected token: not, expected one of: and, or, close-paren",
 }
 `;
 
 exports[`invalid simple expressions 3`] = `
 {
   "_": "(linux)!",
-  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+  "ast": "SyntaxError: Unexpected token: not, expected one of: and, or, close-paren",
 }
 `;
 
 exports[`invalid simple expressions 4`] = `
 {
   "_": "mac!linux",
-  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+  "ast": "SyntaxError: Unexpected token: not, expected one of: and, or, close-paren",
 }
 `;
 
 exports[`invalid simple expressions 5`] = `
 {
   "_": "(mac)linux",
-  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found condition",
+  "ast": "SyntaxError: Unexpected token: condition, expected one of: and, or, close-paren",
 }
 `;
 
 exports[`invalid simple expressions 6`] = `
 {
   "_": "mac!(linux)",
-  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+  "ast": "SyntaxError: Unexpected token: not, expected one of: and, or, close-paren",
 }
 `;
 
 exports[`invalid simple expressions 7`] = `
 {
   "_": "!!mac",
-  "ast": "SyntaxError: Expected one of 'open-paren, condition', found not",
+  "ast": "SyntaxError: Unexpected token: not, expected one of: open-paren, condition",
 }
 `;
 
@@ -269,42 +269,42 @@ exports[`invalid simple expressions 8`] = `
 exports[`invalid simple expressions 9`] = `
 {
   "_": "(mac))",
-  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+  "ast": "SyntaxError: Unexpected token: close-paren",
 }
 `;
 
 exports[`invalid simple expressions 10`] = `
 {
   "_": "(mac))linux",
-  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+  "ast": "SyntaxError: Unexpected token: close-paren",
 }
 `;
 
 exports[`invalid simple expressions 11`] = `
 {
   "_": "(mac))hello!123",
-  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+  "ast": "SyntaxError: Unexpected token: close-paren",
 }
 `;
 
 exports[`invalid simple expressions 12`] = `
 {
   "_": "((mac)",
-  "ast": "SyntaxError: Expected close-paren, found end of expression",
+  "ast": "SyntaxError: Unexpected end of expression",
 }
 `;
 
 exports[`invalid simple expressions 13`] = `
 {
   "_": "(((mac)",
-  "ast": "SyntaxError: Expected close-paren, found end of expression",
+  "ast": "SyntaxError: Unexpected end of expression",
 }
 `;
 
 exports[`invalid simple expressions 14`] = `
 {
   "_": "mac))",
-  "ast": "SyntaxError: Unexpected token: close-paren at position 1",
+  "ast": "SyntaxError: Unexpected token: close-paren",
 }
 `;
 
@@ -318,7 +318,7 @@ exports[`invalid simple expressions 15`] = `
 exports[`invalid simple expressions 16`] = `
 {
   "_": "ma(c)",
-  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found open-paren",
+  "ast": "SyntaxError: Unexpected token: open-paren, expected one of: and, or, close-paren",
 }
 `;
 
@@ -409,7 +409,7 @@ exports[`invalid simple expressions 28`] = `
 exports[`invalid simple expressions 29`] = `
 {
   "_": "((linux))()",
-  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found open-paren",
+  "ast": "SyntaxError: Unexpected token: open-paren, expected one of: and, or, close-paren",
 }
 `;
 
@@ -423,14 +423,14 @@ exports[`invalid simple expressions 30`] = `
 exports[`invalid simple expressions 31`] = `
 {
   "_": "(linux))(",
-  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+  "ast": "SyntaxError: Unexpected token: close-paren",
 }
 `;
 
 exports[`invalid simple expressions 32`] = `
 {
   "_": "!!!",
-  "ast": "SyntaxError: Expected one of 'open-paren, condition', found not",
+  "ast": "SyntaxError: Unexpected token: not, expected one of: open-paren, condition",
 }
 `;
 
@@ -451,14 +451,14 @@ exports[`invalid simple expressions 34`] = `
 exports[`invalid simple expressions 35`] = `
 {
   "_": "!!!linux",
-  "ast": "SyntaxError: Expected one of 'open-paren, condition', found not",
+  "ast": "SyntaxError: Unexpected token: not, expected one of: open-paren, condition",
 }
 `;
 
 exports[`invalid simple expressions 36`] = `
 {
   "_": "!!!(!!!linux)",
-  "ast": "SyntaxError: Expected one of 'open-paren, condition', found not",
+  "ast": "SyntaxError: Unexpected token: not, expected one of: open-paren, condition",
 }
 `;
 
@@ -1095,14 +1095,14 @@ exports[`valid complex expressions 21`] = `
 exports[`invalid complex expressions 1`] = `
 {
   "_": "linux&|mac",
-  "ast": "SyntaxError: Expected one of 'open-paren, condition, not', found or",
+  "ast": "SyntaxError: Unexpected token: or, expected one of: open-paren, condition, not",
 }
 `;
 
 exports[`invalid complex expressions 2`] = `
 {
   "_": "linux&&mac",
-  "ast": "SyntaxError: Expected one of 'open-paren, condition, not', found and",
+  "ast": "SyntaxError: Unexpected token: and, expected one of: open-paren, condition, not",
 }
 `;
 
@@ -1123,14 +1123,14 @@ exports[`invalid complex expressions 4`] = `
 exports[`invalid complex expressions 5`] = `
 {
   "_": "(linux&mac",
-  "ast": "SyntaxError: Expected close-paren, found end of expression",
+  "ast": "SyntaxError: Unexpected end of expression",
 }
 `;
 
 exports[`invalid complex expressions 6`] = `
 {
   "_": "linux&mac))",
-  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+  "ast": "SyntaxError: Unexpected token: close-paren",
 }
 `;
 
@@ -1151,7 +1151,7 @@ exports[`invalid complex expressions 8`] = `
 exports[`invalid complex expressions 9`] = `
 {
   "_": "linux||",
-  "ast": "SyntaxError: Expected one of 'open-paren, condition, not', found or",
+  "ast": "SyntaxError: Unexpected token: or, expected one of: open-paren, condition, not",
 }
 `;
 
@@ -1172,56 +1172,56 @@ exports[`invalid complex expressions 11`] = `
 exports[`invalid complex expressions 12`] = `
 {
   "_": "linux||",
-  "ast": "SyntaxError: Expected one of 'open-paren, condition, not', found or",
+  "ast": "SyntaxError: Unexpected token: or, expected one of: open-paren, condition, not",
 }
 `;
 
 exports[`invalid complex expressions 13`] = `
 {
   "_": "((linux&mac",
-  "ast": "SyntaxError: Expected close-paren, found end of expression",
+  "ast": "SyntaxError: Unexpected end of expression",
 }
 `;
 
 exports[`invalid complex expressions 14`] = `
 {
   "_": "linux&mac))",
-  "ast": "SyntaxError: Unexpected token: close-paren at position 3",
+  "ast": "SyntaxError: Unexpected token: close-paren",
 }
 `;
 
 exports[`invalid complex expressions 15`] = `
 {
   "_": "(linux|mac)&(win",
-  "ast": "SyntaxError: Expected close-paren, found end of expression",
+  "ast": "SyntaxError: Unexpected end of expression",
 }
 `;
 
 exports[`mixed valid and invalid expressions 1`] = `
 {
   "_": "linux&(mac",
-  "ast": "SyntaxError: Expected close-paren, found end of expression",
+  "ast": "SyntaxError: Unexpected end of expression",
 }
 `;
 
 exports[`mixed valid and invalid expressions 2`] = `
 {
   "_": "!(linux&mac))",
-  "ast": "SyntaxError: Unexpected token: close-paren at position 6",
+  "ast": "SyntaxError: Unexpected token: close-paren",
 }
 `;
 
 exports[`mixed valid and invalid expressions 3`] = `
 {
   "_": "linux&(mac!)",
-  "ast": "SyntaxError: Expected one of 'and, or, close-paren', found not",
+  "ast": "SyntaxError: Unexpected token: not, expected one of: and, or, close-paren",
 }
 `;
 
 exports[`mixed valid and invalid expressions 4`] = `
 {
   "_": "(linux&!mac)|win)",
-  "ast": "SyntaxError: Unexpected token: close-paren at position 8",
+  "ast": "SyntaxError: Unexpected token: close-paren",
 }
 `;
 
