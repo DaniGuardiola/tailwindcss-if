@@ -1,50 +1,48 @@
 {
-  "name": "tailwindcss-if",
-  "description": "My package's description",
-  "version": "0.0.1",
-  "author": {
-    "email": "hi@daniguardio.la",
-    "name": "Dani Guardiola",
-    "url": "https://dio.la/"
-  },
-  "license": "MIT",
-  "type": "module",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "test": "bun test src/tests",
-    "prepare": "tshy",
-    "publish": "changeset publish"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.5.0",
-    "@changesets/cli": "^2.26.2",
-    "bun-types": "latest",
-    "postcss": "^8.4.33",
-    "tailwindcss": "^3.4.1",
-    "tshy": "^1.8.0",
-    "typescript": "^5.2.2"
-  },
-  "tshy": {
-    "exports": {
-      "./package.json": "./package.json",
-      ".": "./src/index.ts"
-    }
-  },
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/index.d.ts",
-        "default": "./dist/commonjs/index.js"
-      }
-    }
-  },
-  "main": "./dist/commonjs/index.js",
-  "types": "./dist/commonjs/index.d.ts"
+	"name": "tailwindcss-if",
+	"description": "My package's description",
+	"version": "0.0.1",
+	"author": {
+		"email": "hi@daniguardio.la",
+		"name": "Dani Guardiola",
+		"url": "https://dio.la/"
+	},
+	"license": "MIT",
+	"type": "module",
+	"files": ["dist"],
+	"scripts": {
+		"test": "bun test src/tests",
+		"prepare": "tshy",
+		"publish": "changeset publish"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.5.0",
+		"@changesets/cli": "^2.26.2",
+		"bun-types": "latest",
+		"postcss": "^8.4.33",
+		"tailwindcss": "^3.4.1",
+		"tshy": "^1.8.0",
+		"typescript": "^5.2.2"
+	},
+	"tshy": {
+		"exports": {
+			"./package.json": "./package.json",
+			".": "./src/index.ts"
+		}
+	},
+	"exports": {
+		"./package.json": "./package.json",
+		".": {
+			"import": {
+				"types": "./dist/esm/index.d.ts",
+				"default": "./dist/esm/index.js"
+			},
+			"require": {
+				"types": "./dist/commonjs/index.d.ts",
+				"default": "./dist/commonjs/index.js"
+			}
+		}
+	},
+	"main": "./dist/commonjs/index.js",
+	"types": "./dist/commonjs/index.d.ts"
 }

@@ -52,7 +52,7 @@ exports[`static variants: invalid conditions 1`] = `
 {
   "_": "mac:fridge:line-through win:gba:underline",
   "css": 
-"CssSyntaxError: /home/dani/projects/tailwind-if/test.css:1:7: The \`mac:fridge:line-through\` class does not exist. If \`mac:fridge:line-through\` is a custom class, make sure it is defined within a \`@layer\` directive.
+"CssSyntaxError: /home/dani/projects/tailwindcss-if/test.css:1:7: The \`mac:fridge:line-through\` class does not exist. If \`mac:fridge:line-through\` is a custom class, make sure it is defined within a \`@layer\` directive.
 
 [1m[31m>[39m[22m[90m 1 | [39m[33m.test[39m[33m{[39m[36m@apply[39m mac[33m:[39mfridge[33m:[39mline-through win[33m:[39mgba[33m:[39munderline[33m;[39m[33m}[39m
  [90m   | [39m      [1m[31m^[39m[22m
@@ -604,7 +604,7 @@ exports[`dynamic variants: unknown conditions 1`] = `
 {
   "_": "if-[unknown]:italic",
   "css": 
-"CssSyntaxError: /home/dani/projects/tailwind-if/test.css:1:7: The \`if-[unknown]:italic\` class does not exist. If \`if-[unknown]:italic\` is a custom class, make sure it is defined within a \`@layer\` directive.
+"CssSyntaxError: /home/dani/projects/tailwindcss-if/test.css:1:7: The \`if-[unknown]:italic\` class does not exist. If \`if-[unknown]:italic\` is a custom class, make sure it is defined within a \`@layer\` directive.
 
 [1m[31m>[39m[22m[90m 1 | [39m[33m.test[39m[33m{[39m[36m@apply[39m if-[33m[[39munknown[33m][39m[33m:[39mitalic[33m;[39m[33m}[39m
  [90m   | [39m      [1m[31m^[39m[22m
@@ -617,7 +617,7 @@ exports[`dynamic variants: unknown conditions 2`] = `
 {
   "_": "if-[win|unknown]:italic",
   "css": 
-"CssSyntaxError: /home/dani/projects/tailwind-if/test.css:1:7: The \`if-[win|unknown]:italic\` class does not exist. If \`if-[win|unknown]:italic\` is a custom class, make sure it is defined within a \`@layer\` directive.
+"CssSyntaxError: /home/dani/projects/tailwindcss-if/test.css:1:7: The \`if-[win|unknown]:italic\` class does not exist. If \`if-[win|unknown]:italic\` is a custom class, make sure it is defined within a \`@layer\` directive.
 
 [1m[31m>[39m[22m[90m 1 | [39m[33m.test[39m[33m{[39m[36m@apply[39m if-[33m[[39mwin|unknown[33m][39m[33m:[39mitalic[33m;[39m[33m}[39m
  [90m   | [39m      [1m[31m^[39m[22m

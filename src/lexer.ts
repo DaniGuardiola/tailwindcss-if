@@ -31,36 +31,34 @@ export function tokenize(input: string) {
 	}
 
 	for (const char of input) {
-		if (!CONDITION_REGEXP.test(char)) {
+		if (CONDITION_REGEXP.test(char)) {
+			conditionBuffer += char;
+		} else {
 			tryPushCondition();
-		}
-		switch (char) {
-			case "(": {
-				tokens.push({ type: "open-paren" });
-				break;
-			}
-			case ")": {
-				tokens.push({ type: "close-paren" });
-				break;
-			}
-			case "!": {
-				tokens.push({ type: "not" });
-				break;
-			}
-			case "&": {
-				tokens.push({ type: "and" });
-				break;
-			}
-			case "|": {
-				tokens.push({ type: "or" });
-				break;
-			}
-			default:
-				if (CONDITION_REGEXP.test(char)) {
-					conditionBuffer += char;
-				} else {
-					throw new SyntaxError(`Unexpected character: ${char}`);
+			switch (char) {
+				case "(": {
+					tokens.push({ type: "open-paren" });
+					break;
 				}
+				case ")": {
+					tokens.push({ type: "close-paren" });
+					break;
+				}
+				case "!": {
+					tokens.push({ type: "not" });
+					break;
+				}
+				case "&": {
+					tokens.push({ type: "and" });
+					break;
+				}
+				case "|": {
+					tokens.push({ type: "or" });
+					break;
+				}
+				default:
+					throw new SyntaxError(`Unexpected character: ${char}`);
+			}
 		}
 	}
 	tryPushCondition();
