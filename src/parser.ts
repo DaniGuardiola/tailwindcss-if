@@ -11,7 +11,7 @@ export function constructAst(tokens: Token[]) {
 	function parseExpression(): Node {
 		let node = parsePrimary();
 
-		while (current < tokens.length && isOperator(tokens.at(current))) {
+		while (current < tokens.length && isOperator(getToken())) {
 			node = parseBinary(node);
 		}
 
