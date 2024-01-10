@@ -395,7 +395,7 @@ exports[`dynamic variants: complex expressions 18`] = `
 {
   "_": "if-[!linux&!mac]:italic",
   "css": 
-":not(.platform-linux):not([data-platform-mac]) .test {
+":not(.platform-linux, [data-platform-mac]) .test {
     font-style: italic
 }"
 ,
@@ -417,7 +417,7 @@ exports[`dynamic variants: complex expressions 20`] = `
 {
   "_": "if-[!(!linux&mac)|win]:italic",
   "css": 
-":is(:not(:not(.platform-linux), [data-platform-mac]), body.is-windows) .test {
+":is(:not(:not(.platform-linux)[data-platform-mac]), body.is-windows) .test {
     font-style: italic
 }"
 ,
@@ -439,7 +439,7 @@ exports[`dynamic variants: 'not' distributed over 'and' 1`] = `
 {
   "_": "if-[!(linux&mac)]:italic",
   "css": 
-":not(.platform-linux, [data-platform-mac]) .test {
+":not(.platform-linux[data-platform-mac]) .test {
     font-style: italic
 }"
 ,
@@ -450,7 +450,7 @@ exports[`dynamic variants: 'not' distributed over 'and' 2`] = `
 {
   "_": "if-[!(linux&mac&win)]:italic",
   "css": 
-":not(.platform-linux[data-platform-mac], :is(body.is-windows)) .test {
+":not(.platform-linux[data-platform-mac]:is(body.is-windows)) .test {
     font-style: italic
 }"
 ,
@@ -461,7 +461,7 @@ exports[`dynamic variants: 'not' distributed over 'and' 3`] = `
 {
   "_": "if-[!(linux&!mac)]:italic",
   "css": 
-":not(.platform-linux, :not([data-platform-mac])) .test {
+":not(.platform-linux:not([data-platform-mac])) .test {
     font-style: italic
 }"
 ,
@@ -472,7 +472,7 @@ exports[`dynamic variants: 'not' distributed over 'and' 4`] = `
 {
   "_": "if-[!(!linux&mac)]:italic",
   "css": 
-":not(:not(.platform-linux), [data-platform-mac]) .test {
+":not(:not(.platform-linux)[data-platform-mac]) .test {
     font-style: italic
 }"
 ,
@@ -505,7 +505,7 @@ exports[`dynamic variants: 'not' distributed over 'and' 7`] = `
 {
   "_": "if-[!(linux&mac)|win]:italic",
   "css": 
-":is(:not(.platform-linux, [data-platform-mac]), body.is-windows) .test {
+":is(:not(.platform-linux[data-platform-mac]), body.is-windows) .test {
     font-style: italic
 }"
 ,
@@ -516,7 +516,7 @@ exports[`dynamic variants: 'not' distributed over 'and' 8`] = `
 {
   "_": "if-[!(linux|(mac&win))]:italic",
   "css": 
-":is(:not(.platform-linux), :not([data-platform-mac]):not(:is(body.is-windows))) .test {
+":not(.platform-linux, [data-platform-mac]:is(body.is-windows)) .test {
     font-style: italic
 }"
 ,
@@ -527,7 +527,7 @@ exports[`dynamic variants: 'not' distributed over 'and' 9`] = `
 {
   "_": "if-[!(linux&mac)|!(win&mac)]:italic",
   "css": 
-":is(:not(.platform-linux, [data-platform-mac]), :not(:is(body.is-windows), [data-platform-mac])) .test {
+":not(.platform-linux[data-platform-mac]:is(body.is-windows)[data-platform-mac]) .test {
     font-style: italic
 }"
 ,
@@ -538,7 +538,7 @@ exports[`dynamic variants: 'not' distributed over 'and' 10`] = `
 {
   "_": "if-[!((linux&mac)|(win&mac))]:italic",
   "css": 
-":is(:not(.platform-linux):not([data-platform-mac]), :not(:is(body.is-windows)):not([data-platform-mac])) .test {
+":not(.platform-linux[data-platform-mac], :is(body.is-windows)[data-platform-mac]) .test {
     font-style: italic
 }"
 ,
@@ -549,7 +549,7 @@ exports[`dynamic variants: 'not' distributed over 'and' 11`] = `
 {
   "_": "if-[!((!linux&mac)|!(!win&mac))]:italic",
   "css": 
-":is(.platform-linux:not([data-platform-mac]), :not(body.is-windows)[data-platform-mac]) .test {
+":not(:not(.platform-linux)[data-platform-mac], :not(:not(body.is-windows)[data-platform-mac])) .test {
     font-style: italic
 }"
 ,

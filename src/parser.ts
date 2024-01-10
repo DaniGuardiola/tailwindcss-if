@@ -1,9 +1,22 @@
 import { type AndToken, type OrToken, type Token, tokenize } from "./lexer.js";
 
-export type Node =
-	| { type: "binary"; operator: "and" | "or"; left: Node; right: Node }
-	| { type: "unary"; operator: "not"; operand: Node }
-	| { type: "condition"; name: string };
+export type AndNode = {
+	type: "binary";
+	operator: "and";
+	left: Node;
+	right: Node;
+};
+export type OrNode = {
+	type: "binary";
+	operator: "or";
+	left: Node;
+	right: Node;
+};
+export type BinaryNode = AndNode | OrNode;
+export type UnaryNode = { type: "unary"; operator: "not"; operand: Node };
+export type ConditionNode = { type: "condition"; name: string };
+
+export type Node = BinaryNode | UnaryNode | ConditionNode;
 
 export function constructAst(tokens: Token[]) {
 	let current = 0;

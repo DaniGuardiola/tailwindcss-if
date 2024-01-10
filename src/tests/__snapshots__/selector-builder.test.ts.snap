@@ -213,7 +213,7 @@ exports[`complex expressions 17`] = `
 exports[`complex expressions 18`] = `
 {
   "_": "!linux&!mac",
-  "selector": ":not(.linux):not(.mac)",
+  "selector": ":not(.linux, .mac)",
 }
 `;
 
@@ -227,7 +227,7 @@ exports[`complex expressions 19`] = `
 exports[`complex expressions 20`] = `
 {
   "_": "!(!linux&mac)|win",
-  "selector": ":is(:not(:not(.linux), .mac), .win)",
+  "selector": ":is(:not(:not(.linux).mac), .win)",
 }
 `;
 
@@ -238,80 +238,199 @@ exports[`complex expressions 21`] = `
 }
 `;
 
-exports[`'not' distributed over 'and' 1`] = `
+exports[`unary collapsing 1`] = `
 {
   "_": "!(linux&mac)",
-  "selector": ":not(.linux, .mac)",
+  "selector": ":not(.linux.mac)",
 }
 `;
 
-exports[`'not' distributed over 'and' 2`] = `
+exports[`unary collapsing 2`] = `
 {
   "_": "!(linux&mac&win)",
-  "selector": ":not(.linux.mac, .win)",
+  "selector": ":not(.linux.mac.win)",
 }
 `;
 
-exports[`'not' distributed over 'and' 3`] = `
+exports[`unary collapsing 3`] = `
 {
   "_": "!(linux&!mac)",
-  "selector": ":not(.linux, :not(.mac))",
+  "selector": ":not(.linux:not(.mac))",
 }
 `;
 
-exports[`'not' distributed over 'and' 4`] = `
+exports[`unary collapsing 4`] = `
 {
   "_": "!(!linux&mac)",
-  "selector": ":not(:not(.linux), .mac)",
+  "selector": ":not(:not(.linux).mac)",
 }
 `;
 
-exports[`'not' distributed over 'and' 5`] = `
+exports[`unary collapsing 5`] = `
+{
+  "_": "!(!linux&!mac)",
+  "selector": ":not(:not(.linux):not(.mac))",
+}
+`;
+
+exports[`unary collapsing 6`] = `
 {
   "_": "!(!(linux&mac))",
   "selector": ".linux.mac",
 }
 `;
 
-exports[`'not' distributed over 'and' 6`] = `
+exports[`unary collapsing 7`] = `
+{
+  "_": "!(!(linux&mac&win))",
+  "selector": ".linux.mac.win",
+}
+`;
+
+exports[`unary collapsing 8`] = `
+{
+  "_": "!(!(linux&!mac))",
+  "selector": ".linux:not(.mac)",
+}
+`;
+
+exports[`unary collapsing 9`] = `
 {
   "_": "!(!(!linux&mac))",
   "selector": ":not(.linux).mac",
 }
 `;
 
-exports[`'not' distributed over 'and' 7`] = `
+exports[`unary collapsing 10`] = `
 {
-  "_": "!(linux&mac)|win",
-  "selector": ":is(:not(.linux, .mac), .win)",
+  "_": "!(!(!linux&!mac))",
+  "selector": ":not(.linux):not(.mac)",
 }
 `;
 
-exports[`'not' distributed over 'and' 8`] = `
+exports[`unary collapsing 11`] = `
 {
-  "_": "!(linux|(mac&win))",
-  "selector": ":is(:not(.linux), :not(.mac):not(.win))",
+  "_": "!(linux|mac)",
+  "selector": ":not(.linux, .mac)",
 }
 `;
 
-exports[`'not' distributed over 'and' 9`] = `
+exports[`unary collapsing 12`] = `
 {
-  "_": "!(linux&mac)|!(win&mac)",
-  "selector": ":is(:not(.linux, .mac), :not(.win, .mac))",
+  "_": "!(linux|mac|win)",
+  "selector": ":not(:is(.linux, .mac), .win)",
 }
 `;
 
-exports[`'not' distributed over 'and' 10`] = `
+exports[`unary collapsing 13`] = `
 {
-  "_": "!((linux&mac)|(win&mac))",
-  "selector": ":is(:not(.linux):not(.mac), :not(.win):not(.mac))",
+  "_": "!(linux|!mac)",
+  "selector": ":not(.linux, :not(.mac))",
 }
 `;
 
-exports[`'not' distributed over 'and' 11`] = `
+exports[`unary collapsing 14`] = `
 {
-  "_": "!((!linux&mac)|!(!win&mac))",
-  "selector": ":is(.linux:not(.mac), :not(.win).mac)",
+  "_": "!(!linux|mac)",
+  "selector": ":not(:not(.linux), .mac)",
+}
+`;
+
+exports[`unary collapsing 15`] = `
+{
+  "_": "!(!linux|!mac)",
+  "selector": ":not(:not(.linux), :not(.mac))",
+}
+`;
+
+exports[`unary collapsing 16`] = `
+{
+  "_": "!(!(linux|mac))",
+  "selector": ":is(.linux, .mac)",
+}
+`;
+
+exports[`unary collapsing 17`] = `
+{
+  "_": "!(!(linux|mac|win))",
+  "selector": ":is(:is(.linux, .mac), .win)",
+}
+`;
+
+exports[`unary collapsing 18`] = `
+{
+  "_": "!(!(linux|!mac))",
+  "selector": ":is(.linux, :not(.mac))",
+}
+`;
+
+exports[`unary collapsing 19`] = `
+{
+  "_": "!(!(!linux|mac))",
+  "selector": ":is(:not(.linux), .mac)",
+}
+`;
+
+exports[`unary collapsing 20`] = `
+{
+  "_": "!(!(!linux|!mac))",
+  "selector": ":is(:not(.linux), :not(.mac))",
+}
+`;
+
+exports[`binary collapsing 1`] = `
+{
+  "_": "!(!linux&!mac)",
+  "selector": ":not(:not(.linux):not(.mac))",
+}
+`;
+
+exports[`binary collapsing 2`] = `
+{
+  "_": "!(!linux&!mac&!win)",
+  "selector": ":not(:not(.linux, .mac):not(.win))",
+}
+`;
+
+exports[`binary collapsing 3`] = `
+{
+  "_": "!(!linux|!mac)",
+  "selector": ":not(:not(.linux), :not(.mac))",
+}
+`;
+
+exports[`binary collapsing 4`] = `
+{
+  "_": "!(!linux|!mac|!win)",
+  "selector": ":not(:not(.linux.mac), :not(.win))",
+}
+`;
+
+exports[`binary collapsing 5`] = `
+{
+  "_": "!(!linux&!mac)",
+  "selector": ":not(:not(.linux):not(.mac))",
+}
+`;
+
+exports[`binary collapsing 6`] = `
+{
+  "_": "!(!linux&!mac&!win)",
+  "selector": ":not(:not(.linux, .mac):not(.win))",
+}
+`;
+
+exports[`binary collapsing 7`] = `
+{
+  "_": "!(!linux|!mac)",
+  "selector": ":not(:not(.linux), :not(.mac))",
+}
+`;
+
+exports[`binary collapsing 8`] = `
+{
+  "_": "!(!linux|!mac|!win)",
+  "selector": ":not(:not(.linux.mac), :not(.win))",
 }
 `;
 

@@ -42,18 +42,38 @@ test("complex expressions", () => {
 	expectSelector("((linux|mac)&(!win|linux))&win");
 });
 
-test("'not' distributed over 'and'", () => {
+test("unary collapsing", () => {
 	expectSelector("!(linux&mac)");
 	expectSelector("!(linux&mac&win)");
 	expectSelector("!(linux&!mac)");
 	expectSelector("!(!linux&mac)");
+	expectSelector("!(!linux&!mac)");
 	expectSelector("!(!(linux&mac))");
+	expectSelector("!(!(linux&mac&win))");
+	expectSelector("!(!(linux&!mac))");
 	expectSelector("!(!(!linux&mac))");
-	expectSelector("!(linux&mac)|win");
-	expectSelector("!(linux|(mac&win))");
-	expectSelector("!(linux&mac)|!(win&mac)");
-	expectSelector("!((linux&mac)|(win&mac))");
-	expectSelector("!((!linux&mac)|!(!win&mac))");
+	expectSelector("!(!(!linux&!mac))");
+	expectSelector("!(linux|mac)");
+	expectSelector("!(linux|mac|win)");
+	expectSelector("!(linux|!mac)");
+	expectSelector("!(!linux|mac)");
+	expectSelector("!(!linux|!mac)");
+	expectSelector("!(!(linux|mac))");
+	expectSelector("!(!(linux|mac|win))");
+	expectSelector("!(!(linux|!mac))");
+	expectSelector("!(!(!linux|mac))");
+	expectSelector("!(!(!linux|!mac))");
+});
+
+test("binary collapsing", () => {
+	expectSelector("!(!linux&!mac)");
+	expectSelector("!(!linux&!mac&!win)");
+	expectSelector("!(!linux|!mac)");
+	expectSelector("!(!linux|!mac|!win)");
+	expectSelector("!(!linux&!mac)");
+	expectSelector("!(!linux&!mac&!win)");
+	expectSelector("!(!linux|!mac)");
+	expectSelector("!(!linux|!mac|!win)");
 });
 
 test("wrapped selectors", () => {
