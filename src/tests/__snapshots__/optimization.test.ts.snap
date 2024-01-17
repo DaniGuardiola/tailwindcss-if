@@ -1,0 +1,1633 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`optimization: collapse and/or 1`] = `
+"
+-- input --
+
+AND (
+  a
+  b
+)
+
+-- output --
+
+AND (
+  a
+  b
+)
+"
+`;
+
+exports[`optimization: collapse and/or 2`] = `
+"
+-- input --
+
+OR (
+  a
+  b
+)
+
+-- output --
+
+OR (
+  a
+  b
+)
+"
+`;
+
+exports[`optimization: collapse and/or 3`] = `
+"
+-- input --
+
+AND (
+  AND (
+    a
+    b
+  )
+  c
+)
+
+-- output --
+
+AND (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse and/or 4`] = `
+"
+-- input --
+
+AND (
+  a
+  AND (
+    b
+    c
+  )
+)
+
+-- output --
+
+AND (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse and/or 5`] = `
+"
+-- input --
+
+AND (
+  a
+  OR (
+    b
+    c
+  )
+)
+
+-- output --
+
+AND (
+  a
+  OR (
+    b
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or 6`] = `
+"
+-- input --
+
+OR (
+  a
+  OR (
+    b
+    c
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse and/or 7`] = `
+"
+-- input --
+
+OR (
+  a
+  AND (
+    b
+    c
+  )
+)
+
+-- output --
+
+OR (
+  a
+  AND (
+    b
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or 8`] = `
+"
+-- input --
+
+AND (
+  a
+  AND (
+    b
+    AND (
+      c
+      d
+    )
+  )
+)
+
+-- output --
+
+AND (
+  a
+  b
+  c
+  d
+)
+"
+`;
+
+exports[`optimization: collapse and/or 9`] = `
+"
+-- input --
+
+AND (
+  a
+  AND (
+    b
+    OR (
+      c
+      d
+    )
+  )
+)
+
+-- output --
+
+AND (
+  a
+  b
+  OR (
+    c
+    d
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or 10`] = `
+"
+-- input --
+
+AND (
+  a
+  OR (
+    b
+    AND (
+      c
+      d
+    )
+  )
+)
+
+-- output --
+
+AND (
+  a
+  OR (
+    b
+    AND (
+      c
+      d
+    )
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or 11`] = `
+"
+-- input --
+
+AND (
+  a
+  OR (
+    b
+    OR (
+      c
+      d
+    )
+  )
+)
+
+-- output --
+
+AND (
+  a
+  OR (
+    b
+    c
+    d
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or 12`] = `
+"
+-- input --
+
+OR (
+  a
+  AND (
+    b
+    AND (
+      c
+      d
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  AND (
+    b
+    c
+    d
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or 13`] = `
+"
+-- input --
+
+OR (
+  a
+  AND (
+    b
+    OR (
+      c
+      d
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  AND (
+    b
+    OR (
+      c
+      d
+    )
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or 14`] = `
+"
+-- input --
+
+OR (
+  a
+  OR (
+    b
+    AND (
+      c
+      d
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+  AND (
+    c
+    d
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or 15`] = `
+"
+-- input --
+
+OR (
+  a
+  OR (
+    b
+    OR (
+      c
+      d
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+  c
+  d
+)
+"
+`;
+
+exports[`optimization: collapse not 1`] = `
+"
+-- input --
+
+NOT (
+  a
+)
+
+-- output --
+
+NOT (
+  a
+)
+"
+`;
+
+exports[`optimization: collapse not 2`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    a
+  )
+)
+
+-- output --
+
+a
+"
+`;
+
+exports[`optimization: collapse not 3`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    NOT (
+      a
+    )
+  )
+)
+
+-- output --
+
+NOT (
+  a
+)
+"
+`;
+
+exports[`optimization: collapse not 4`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    NOT (
+      NOT (
+        a
+      )
+    )
+  )
+)
+
+-- output --
+
+a
+"
+`;
+
+exports[`optimization: collapse not 5`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    NOT (
+      NOT (
+        NOT (
+          a
+        )
+      )
+    )
+  )
+)
+
+-- output --
+
+NOT (
+  a
+)
+"
+`;
+
+exports[`optimization: collapse not 6`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    NOT (
+      NOT (
+        NOT (
+          NOT (
+            a
+          )
+        )
+      )
+    )
+  )
+)
+
+-- output --
+
+a
+"
+`;
+
+exports[`optimization: collapse not 7`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    NOT (
+      NOT (
+        NOT (
+          NOT (
+            NOT (
+              a
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+-- output --
+
+NOT (
+  a
+)
+"
+`;
+
+exports[`optimization: collapse not 8`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    NOT (
+      NOT (
+        NOT (
+          NOT (
+            NOT (
+              NOT (
+                a
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+-- output --
+
+a
+"
+`;
+
+exports[`optimization: collapse and/or + not 1`] = `
+"
+-- input --
+
+NOT (
+  AND (
+    a
+    b
+  )
+)
+
+-- output --
+
+NOT (
+  AND (
+    a
+    b
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 2`] = `
+"
+-- input --
+
+NOT (
+  AND (
+    AND (
+      a
+      b
+    )
+    c
+  )
+)
+
+-- output --
+
+NOT (
+  AND (
+    a
+    b
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 3`] = `
+"
+-- input --
+
+NOT (
+  AND (
+    a
+    AND (
+      b
+      c
+    )
+  )
+)
+
+-- output --
+
+NOT (
+  AND (
+    a
+    b
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 4`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    a
+    b
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 5`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    OR (
+      a
+      b
+    )
+    c
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 6`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    a
+    OR (
+      b
+      c
+    )
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 7`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    AND (
+      a
+      b
+    )
+  )
+)
+
+-- output --
+
+AND (
+  a
+  b
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 8`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    OR (
+      a
+      b
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 9`] = `
+"
+-- input --
+
+NOT (
+  AND (
+    a
+    NOT (
+      c
+    )
+  )
+)
+
+-- output --
+
+NOT (
+  AND (
+    a
+    NOT (
+      c
+    )
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 10`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    AND (
+      a
+      NOT (
+        c
+      )
+    )
+  )
+)
+
+-- output --
+
+AND (
+  a
+  NOT (
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 11`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    a
+    NOT (
+      c
+    )
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  NOT (
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 12`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    OR (
+      a
+      NOT (
+        c
+      )
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  NOT (
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 13`] = `
+"
+-- input --
+
+NOT (
+  AND (
+    NOT (
+      NOT (
+        AND (
+          a
+          b
+        )
+      )
+    )
+    c
+  )
+)
+
+-- output --
+
+NOT (
+  AND (
+    a
+    b
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 14`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    NOT (
+      NOT (
+        OR (
+          a
+          b
+        )
+      )
+    )
+    c
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 15`] = `
+"
+-- input --
+
+NOT (
+  AND (
+    NOT (
+      NOT (
+        AND (
+          a
+          NOT (
+            b
+          )
+        )
+      )
+    )
+    c
+  )
+)
+
+-- output --
+
+NOT (
+  AND (
+    a
+    NOT (
+      b
+    )
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: collapse and/or + not 16`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    NOT (
+      NOT (
+        OR (
+          a
+          NOT (
+            b
+          )
+        )
+      )
+    )
+    c
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  NOT (
+    b
+  )
+  c
+)
+"
+`;
+
+exports[`optimization: collapse not(or()) 1`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    a
+    b
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+)
+"
+`;
+
+exports[`optimization: collapse not(or()) 2`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    OR (
+      a
+      b
+    )
+    c
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse not(or()) 3`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    a
+    OR (
+      b
+      c
+    )
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse not(or()) 4`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    OR (
+      a
+      b
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+)
+"
+`;
+
+exports[`optimization: collapse not(or()) 5`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    OR (
+      OR (
+        a
+        b
+      )
+      c
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse not(or()) 6`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    OR (
+      a
+      OR (
+        b
+        c
+      )
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse not(or()) 7`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    NOT (
+      OR (
+        a
+        b
+      )
+    )
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+)
+"
+`;
+
+exports[`optimization: collapse not(or()) 8`] = `
+"
+-- input --
+
+NOT (
+  NOT (
+    NOT (
+      OR (
+        OR (
+          a
+          b
+        )
+        c
+      )
+    )
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: collapse not(or()) 9`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    a
+    NOT (
+      NOT (
+        OR (
+          b
+          c
+        )
+      )
+    )
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 1`] = `
+"
+-- input --
+
+OR (
+  NOT (
+    a
+  )
+  NOT (
+    b
+  )
+  NOT (
+    c
+  )
+)
+
+-- output --
+
+NOT (
+  AND (
+    a
+    b
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 2`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    NOT (
+      a
+    )
+    NOT (
+      b
+    )
+    NOT (
+      c
+    )
+  )
+)
+
+-- output --
+
+AND (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 3`] = `
+"
+-- input --
+
+AND (
+  NOT (
+    a
+  )
+  NOT (
+    b
+  )
+  NOT (
+    c
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 4`] = `
+"
+-- input --
+
+NOT (
+  AND (
+    NOT (
+      a
+    )
+    NOT (
+      b
+    )
+    NOT (
+      c
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 5`] = `
+"
+-- input --
+
+OR (
+  NOT (
+    a
+  )
+  NOT (
+    b
+  )
+  NOT (
+    c
+  )
+  NOT (
+    d
+  )
+)
+
+-- output --
+
+NOT (
+  AND (
+    a
+    b
+    c
+    d
+  )
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 6`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    NOT (
+      a
+    )
+    NOT (
+      b
+    )
+    NOT (
+      c
+    )
+    NOT (
+      d
+    )
+  )
+)
+
+-- output --
+
+AND (
+  a
+  b
+  c
+  d
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 7`] = `
+"
+-- input --
+
+AND (
+  NOT (
+    a
+  )
+  NOT (
+    b
+  )
+  NOT (
+    c
+  )
+  NOT (
+    d
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+  d
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 8`] = `
+"
+-- input --
+
+NOT (
+  AND (
+    NOT (
+      a
+    )
+    NOT (
+      b
+    )
+    NOT (
+      c
+    )
+    NOT (
+      d
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+  c
+  d
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 9`] = `
+"
+-- input --
+
+OR (
+  NOT (
+    NOT (
+      a
+    )
+  )
+  NOT (
+    NOT (
+      b
+    )
+  )
+  NOT (
+    NOT (
+      c
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 10`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    NOT (
+      NOT (
+        a
+      )
+    )
+    NOT (
+      NOT (
+        b
+      )
+    )
+    NOT (
+      NOT (
+        c
+      )
+    )
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 11`] = `
+"
+-- input --
+
+AND (
+  NOT (
+    NOT (
+      a
+    )
+  )
+  NOT (
+    NOT (
+      b
+    )
+  )
+  NOT (
+    NOT (
+      c
+    )
+  )
+)
+
+-- output --
+
+AND (
+  a
+  b
+  c
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 12`] = `
+"
+-- input --
+
+NOT (
+  AND (
+    NOT (
+      NOT (
+        a
+      )
+    )
+    NOT (
+      NOT (
+        b
+      )
+    )
+    NOT (
+      NOT (
+        c
+      )
+    )
+  )
+)
+
+-- output --
+
+NOT (
+  AND (
+    a
+    b
+    c
+  )
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 13`] = `
+"
+-- input --
+
+OR (
+  NOT (
+    NOT (
+      a
+    )
+  )
+  NOT (
+    NOT (
+      b
+    )
+  )
+  NOT (
+    NOT (
+      c
+    )
+  )
+  NOT (
+    NOT (
+      d
+    )
+  )
+)
+
+-- output --
+
+OR (
+  a
+  b
+  c
+  d
+)
+"
+`;
+
+exports[`optimization: apply De Morgan 14`] = `
+"
+-- input --
+
+NOT (
+  OR (
+    NOT (
+      NOT (
+        a
+      )
+    )
+    NOT (
+      NOT (
+        b
+      )
+    )
+    NOT (
+      NOT (
+        c
+      )
+    )
+    NOT (
+      NOT (
+        d
+      )
+    )
+  )
+)
+
+-- output --
+
+NOR (
+  a
+  b
+  c
+  d
+)
+"
+`;

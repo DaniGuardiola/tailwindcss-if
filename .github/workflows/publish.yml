@@ -16,7 +16,6 @@ jobs:
           bun-version: latest
       - run: bun install --frozen-lockfile --ignore-scripts
       - name: Create release pull request or publish
-        id: changesets
         uses: changesets/action@v1
         with:
           publish: bun run publish

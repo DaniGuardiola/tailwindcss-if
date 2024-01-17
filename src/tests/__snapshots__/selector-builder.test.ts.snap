@@ -269,7 +269,7 @@ exports[`unary collapsing 4`] = `
 exports[`unary collapsing 5`] = `
 {
   "_": "!(!linux&!mac)",
-  "selector": ":not(:not(.linux):not(.mac))",
+  "selector": ":is(.linux, .mac)",
 }
 `;
 
@@ -304,7 +304,7 @@ exports[`unary collapsing 9`] = `
 exports[`unary collapsing 10`] = `
 {
   "_": "!(!(!linux&!mac))",
-  "selector": ":not(.linux):not(.mac)",
+  "selector": ":not(.linux, .mac)",
 }
 `;
 
@@ -318,7 +318,7 @@ exports[`unary collapsing 11`] = `
 exports[`unary collapsing 12`] = `
 {
   "_": "!(linux|mac|win)",
-  "selector": ":not(:is(.linux, .mac), .win)",
+  "selector": ":not(.linux, .mac, .win)",
 }
 `;
 
@@ -339,7 +339,7 @@ exports[`unary collapsing 14`] = `
 exports[`unary collapsing 15`] = `
 {
   "_": "!(!linux|!mac)",
-  "selector": ":not(:not(.linux), :not(.mac))",
+  "selector": ".linux.mac",
 }
 `;
 
@@ -353,7 +353,7 @@ exports[`unary collapsing 16`] = `
 exports[`unary collapsing 17`] = `
 {
   "_": "!(!(linux|mac|win))",
-  "selector": ":is(:is(.linux, .mac), .win)",
+  "selector": ":is(.linux, .mac, .win)",
 }
 `;
 
@@ -374,63 +374,63 @@ exports[`unary collapsing 19`] = `
 exports[`unary collapsing 20`] = `
 {
   "_": "!(!(!linux|!mac))",
-  "selector": ":is(:not(.linux), :not(.mac))",
+  "selector": ":not(.linux.mac)",
 }
 `;
 
 exports[`binary collapsing 1`] = `
 {
   "_": "!(!linux&!mac)",
-  "selector": ":not(:not(.linux):not(.mac))",
+  "selector": ":is(.linux, .mac)",
 }
 `;
 
 exports[`binary collapsing 2`] = `
 {
   "_": "!(!linux&!mac&!win)",
-  "selector": ":not(:not(.linux, .mac):not(.win))",
+  "selector": ":is(.linux, .mac, .win)",
 }
 `;
 
 exports[`binary collapsing 3`] = `
 {
   "_": "!(!linux|!mac)",
-  "selector": ":not(:not(.linux), :not(.mac))",
+  "selector": ".linux.mac",
 }
 `;
 
 exports[`binary collapsing 4`] = `
 {
   "_": "!(!linux|!mac|!win)",
-  "selector": ":not(:not(.linux.mac), :not(.win))",
+  "selector": ".linux.mac.win",
 }
 `;
 
 exports[`binary collapsing 5`] = `
 {
   "_": "!(!linux&!mac)",
-  "selector": ":not(:not(.linux):not(.mac))",
+  "selector": ":is(.linux, .mac)",
 }
 `;
 
 exports[`binary collapsing 6`] = `
 {
   "_": "!(!linux&!mac&!win)",
-  "selector": ":not(:not(.linux, .mac):not(.win))",
+  "selector": ":is(.linux, .mac, .win)",
 }
 `;
 
 exports[`binary collapsing 7`] = `
 {
   "_": "!(!linux|!mac)",
-  "selector": ":not(:not(.linux), :not(.mac))",
+  "selector": ".linux.mac",
 }
 `;
 
 exports[`binary collapsing 8`] = `
 {
   "_": "!(!linux|!mac|!win)",
-  "selector": ":not(:not(.linux.mac), :not(.win))",
+  "selector": ".linux.mac.win",
 }
 `;
 

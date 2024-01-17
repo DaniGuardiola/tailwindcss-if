@@ -1,22 +1,5 @@
+import type { Node } from "./ast.js";
 import { type AndToken, type OrToken, type Token, tokenize } from "./lexer.js";
-
-export type AndNode = {
-	type: "binary";
-	operator: "and";
-	left: Node;
-	right: Node;
-};
-export type OrNode = {
-	type: "binary";
-	operator: "or";
-	left: Node;
-	right: Node;
-};
-export type BinaryNode = AndNode | OrNode;
-export type UnaryNode = { type: "unary"; operator: "not"; operand: Node };
-export type ConditionNode = { type: "condition"; name: string };
-
-export type Node = BinaryNode | UnaryNode | ConditionNode;
 
 export function constructAst(tokens: Token[]) {
 	let current = 0;
@@ -45,7 +28,7 @@ export function constructAst(tokens: Token[]) {
 			case "not": {
 				current++;
 				checkTokenIsValid(["open-paren", "condition"]);
-				return { type: "unary", operator: "not", operand: parsePrimary() };
+				return { type: "not", child: parsePrimary() };
 			}
 			case "condition": {
 				current++;
@@ -67,7 +50,7 @@ export function constructAst(tokens: Token[]) {
 		checkTokenIsValid(["open-paren", "condition", "not"]);
 		const right = parsePrimary();
 
-		return { type: "binary", operator, left, right };
+		return { type: operator, children: [left, right] };
 	}
 
 	function getToken() {

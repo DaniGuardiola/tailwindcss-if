@@ -1,7 +1,6 @@
 import plugin from "tailwindcss/plugin.js";
 
-import { parse } from "./parser.js";
-import { buildSelector } from "./selector-builder.js";
+import { toSelector } from "./selector-builder.js";
 
 /**
  * Options for the `ifVariants` plugin.
@@ -71,8 +70,7 @@ export const ifVariants = plugin.withOptions<TailwindIfOptions>(
 
 			matchVariant("if", (value) => {
 				try {
-					const ast = parse(value);
-					const selector = buildSelector(ast, conditions);
+					const selector = toSelector(value, conditions);
 					return `${withSpecificity(selector)} &`;
 				} catch (_) {
 					return [];

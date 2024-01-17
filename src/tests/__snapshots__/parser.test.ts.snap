@@ -24,12 +24,11 @@ exports[`valid simple expressions 3`] = `
 {
   "_": "!mac",
   "ast": {
-    "operand": {
+    "child": {
       "name": "mac",
       "type": "condition",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -38,12 +37,11 @@ exports[`valid simple expressions 4`] = `
 {
   "_": "(!mac)",
   "ast": {
-    "operand": {
+    "child": {
       "name": "mac",
       "type": "condition",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -52,12 +50,11 @@ exports[`valid simple expressions 5`] = `
 {
   "_": "!(mac)",
   "ast": {
-    "operand": {
+    "child": {
       "name": "mac",
       "type": "condition",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -76,12 +73,11 @@ exports[`valid simple expressions 7`] = `
 {
   "_": "((!(mac)))",
   "ast": {
-    "operand": {
+    "child": {
       "name": "mac",
       "type": "condition",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -90,16 +86,14 @@ exports[`valid simple expressions 8`] = `
 {
   "_": "(!(!(mac)))",
   "ast": {
-    "operand": {
-      "operand": {
+    "child": {
+      "child": {
         "name": "mac",
         "type": "condition",
       },
-      "operator": "not",
-      "type": "unary",
+      "type": "not",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -108,20 +102,17 @@ exports[`valid simple expressions 9`] = `
 {
   "_": "!(!(!(mac)))",
   "ast": {
-    "operand": {
-      "operand": {
-        "operand": {
+    "child": {
+      "child": {
+        "child": {
           "name": "mac",
           "type": "condition",
         },
-        "operator": "not",
-        "type": "unary",
+        "type": "not",
       },
-      "operator": "not",
-      "type": "unary",
+      "type": "not",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -130,24 +121,20 @@ exports[`valid simple expressions 10`] = `
 {
   "_": "!(!(!(!mac)))",
   "ast": {
-    "operand": {
-      "operand": {
-        "operand": {
-          "operand": {
+    "child": {
+      "child": {
+        "child": {
+          "child": {
             "name": "mac",
             "type": "condition",
           },
-          "operator": "not",
-          "type": "unary",
+          "type": "not",
         },
-        "operator": "not",
-        "type": "unary",
+        "type": "not",
       },
-      "operator": "not",
-      "type": "unary",
+      "type": "not",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -166,28 +153,23 @@ exports[`valid simple expressions 12`] = `
 {
   "_": "!(!(!(!(!mac))))",
   "ast": {
-    "operand": {
-      "operand": {
-        "operand": {
-          "operand": {
-            "operand": {
+    "child": {
+      "child": {
+        "child": {
+          "child": {
+            "child": {
               "name": "mac",
               "type": "condition",
             },
-            "operator": "not",
-            "type": "unary",
+            "type": "not",
           },
-          "operator": "not",
-          "type": "unary",
+          "type": "not",
         },
-        "operator": "not",
-        "type": "unary",
+        "type": "not",
       },
-      "operator": "not",
-      "type": "unary",
+      "type": "not",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -196,16 +178,14 @@ exports[`valid simple expressions 13`] = `
 {
   "_": "!(!linux)",
   "ast": {
-    "operand": {
-      "operand": {
+    "child": {
+      "child": {
         "name": "linux",
         "type": "condition",
       },
-      "operator": "not",
-      "type": "unary",
+      "type": "not",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -466,20 +446,20 @@ exports[`valid complex expressions 1`] = `
 {
   "_": "linux&!mac",
   "ast": {
-    "left": {
-      "name": "linux",
-      "type": "condition",
-    },
-    "operator": "and",
-    "right": {
-      "operand": {
-        "name": "mac",
+    "children": [
+      {
+        "name": "linux",
         "type": "condition",
       },
-      "operator": "not",
-      "type": "unary",
-    },
-    "type": "binary",
+      {
+        "child": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "type": "not",
+      },
+    ],
+    "type": "and",
   },
 }
 `;
@@ -488,28 +468,29 @@ exports[`valid complex expressions 2`] = `
 {
   "_": "linux&!mac&win",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "child": {
+              "name": "mac",
+              "type": "condition",
+            },
+            "type": "not",
+          },
+        ],
+        "type": "and",
+      },
+      {
+        "name": "win",
         "type": "condition",
       },
-      "operator": "and",
-      "right": {
-        "operand": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "operator": "not",
-        "type": "unary",
-      },
-      "type": "binary",
-    },
-    "operator": "and",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -518,40 +499,41 @@ exports[`valid complex expressions 3`] = `
 {
   "_": "linux&!mac&win&!win",
   "ast": {
-    "left": {
-      "left": {
-        "left": {
-          "name": "linux",
-          "type": "condition",
-        },
-        "operator": "and",
-        "right": {
-          "operand": {
-            "name": "mac",
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "name": "linux",
+                "type": "condition",
+              },
+              {
+                "child": {
+                  "name": "mac",
+                  "type": "condition",
+                },
+                "type": "not",
+              },
+            ],
+            "type": "and",
+          },
+          {
+            "name": "win",
             "type": "condition",
           },
-          "operator": "not",
-          "type": "unary",
+        ],
+        "type": "and",
+      },
+      {
+        "child": {
+          "name": "win",
+          "type": "condition",
         },
-        "type": "binary",
+        "type": "not",
       },
-      "operator": "and",
-      "right": {
-        "name": "win",
-        "type": "condition",
-      },
-      "type": "binary",
-    },
-    "operator": "and",
-    "right": {
-      "operand": {
-        "name": "win",
-        "type": "condition",
-      },
-      "operator": "not",
-      "type": "unary",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -560,20 +542,20 @@ exports[`valid complex expressions 4`] = `
 {
   "_": "(linux&!mac)",
   "ast": {
-    "left": {
-      "name": "linux",
-      "type": "condition",
-    },
-    "operator": "and",
-    "right": {
-      "operand": {
-        "name": "mac",
+    "children": [
+      {
+        "name": "linux",
         "type": "condition",
       },
-      "operator": "not",
-      "type": "unary",
-    },
-    "type": "binary",
+      {
+        "child": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "type": "not",
+      },
+    ],
+    "type": "and",
   },
 }
 `;
@@ -582,20 +564,20 @@ exports[`valid complex expressions 5`] = `
 {
   "_": "linux&(!mac)",
   "ast": {
-    "left": {
-      "name": "linux",
-      "type": "condition",
-    },
-    "operator": "and",
-    "right": {
-      "operand": {
-        "name": "mac",
+    "children": [
+      {
+        "name": "linux",
         "type": "condition",
       },
-      "operator": "not",
-      "type": "unary",
-    },
-    "type": "binary",
+      {
+        "child": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "type": "not",
+      },
+    ],
+    "type": "and",
   },
 }
 `;
@@ -604,20 +586,20 @@ exports[`valid complex expressions 6`] = `
 {
   "_": "(linux)&(!mac)",
   "ast": {
-    "left": {
-      "name": "linux",
-      "type": "condition",
-    },
-    "operator": "and",
-    "right": {
-      "operand": {
-        "name": "mac",
+    "children": [
+      {
+        "name": "linux",
         "type": "condition",
       },
-      "operator": "not",
-      "type": "unary",
-    },
-    "type": "binary",
+      {
+        "child": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "type": "not",
+      },
+    ],
+    "type": "and",
   },
 }
 `;
@@ -626,28 +608,29 @@ exports[`valid complex expressions 7`] = `
 {
   "_": "(linux&!mac)&win",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "child": {
+              "name": "mac",
+              "type": "condition",
+            },
+            "type": "not",
+          },
+        ],
+        "type": "and",
+      },
+      {
+        "name": "win",
         "type": "condition",
       },
-      "operator": "and",
-      "right": {
-        "operand": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "operator": "not",
-        "type": "unary",
-      },
-      "type": "binary",
-    },
-    "operator": "and",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -656,28 +639,29 @@ exports[`valid complex expressions 8`] = `
 {
   "_": "linux&(!mac&win)",
   "ast": {
-    "left": {
-      "name": "linux",
-      "type": "condition",
-    },
-    "operator": "and",
-    "right": {
-      "left": {
-        "operand": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "operator": "not",
-        "type": "unary",
-      },
-      "operator": "and",
-      "right": {
-        "name": "win",
+    "children": [
+      {
+        "name": "linux",
         "type": "condition",
       },
-      "type": "binary",
-    },
-    "type": "binary",
+      {
+        "children": [
+          {
+            "child": {
+              "name": "mac",
+              "type": "condition",
+            },
+            "type": "not",
+          },
+          {
+            "name": "win",
+            "type": "condition",
+          },
+        ],
+        "type": "and",
+      },
+    ],
+    "type": "and",
   },
 }
 `;
@@ -686,28 +670,29 @@ exports[`valid complex expressions 9`] = `
 {
   "_": "(linux&!mac)&(win)",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "child": {
+              "name": "mac",
+              "type": "condition",
+            },
+            "type": "not",
+          },
+        ],
+        "type": "and",
+      },
+      {
+        "name": "win",
         "type": "condition",
       },
-      "operator": "and",
-      "right": {
-        "operand": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "operator": "not",
-        "type": "unary",
-      },
-      "type": "binary",
-    },
-    "operator": "and",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -716,28 +701,29 @@ exports[`valid complex expressions 10`] = `
 {
   "_": "(linux)&(!mac&win)",
   "ast": {
-    "left": {
-      "name": "linux",
-      "type": "condition",
-    },
-    "operator": "and",
-    "right": {
-      "left": {
-        "operand": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "operator": "not",
-        "type": "unary",
-      },
-      "operator": "and",
-      "right": {
-        "name": "win",
+    "children": [
+      {
+        "name": "linux",
         "type": "condition",
       },
-      "type": "binary",
-    },
-    "type": "binary",
+      {
+        "children": [
+          {
+            "child": {
+              "name": "mac",
+              "type": "condition",
+            },
+            "type": "not",
+          },
+          {
+            "name": "win",
+            "type": "condition",
+          },
+        ],
+        "type": "and",
+      },
+    ],
+    "type": "and",
   },
 }
 `;
@@ -746,28 +732,29 @@ exports[`valid complex expressions 11`] = `
 {
   "_": "(linux)&(!mac)&(win)",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "child": {
+              "name": "mac",
+              "type": "condition",
+            },
+            "type": "not",
+          },
+        ],
+        "type": "and",
+      },
+      {
+        "name": "win",
         "type": "condition",
       },
-      "operator": "and",
-      "right": {
-        "operand": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "operator": "not",
-        "type": "unary",
-      },
-      "type": "binary",
-    },
-    "operator": "and",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -776,28 +763,29 @@ exports[`valid complex expressions 12`] = `
 {
   "_": "((linux)&(!mac)&(win))",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "child": {
+              "name": "mac",
+              "type": "condition",
+            },
+            "type": "not",
+          },
+        ],
+        "type": "and",
+      },
+      {
+        "name": "win",
         "type": "condition",
       },
-      "operator": "and",
-      "right": {
-        "operand": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "operator": "not",
-        "type": "unary",
-      },
-      "type": "binary",
-    },
-    "operator": "and",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -806,24 +794,26 @@ exports[`valid complex expressions 13`] = `
 {
   "_": "linux&mac|win",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "name": "mac",
+            "type": "condition",
+          },
+        ],
+        "type": "and",
+      },
+      {
+        "name": "win",
         "type": "condition",
       },
-      "operator": "and",
-      "right": {
-        "name": "mac",
-        "type": "condition",
-      },
-      "type": "binary",
-    },
-    "operator": "or",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+    ],
+    "type": "or",
   },
 }
 `;
@@ -832,24 +822,26 @@ exports[`valid complex expressions 14`] = `
 {
   "_": "linux&(mac|win)",
   "ast": {
-    "left": {
-      "name": "linux",
-      "type": "condition",
-    },
-    "operator": "and",
-    "right": {
-      "left": {
-        "name": "mac",
+    "children": [
+      {
+        "name": "linux",
         "type": "condition",
       },
-      "operator": "or",
-      "right": {
-        "name": "win",
-        "type": "condition",
+      {
+        "children": [
+          {
+            "name": "mac",
+            "type": "condition",
+          },
+          {
+            "name": "win",
+            "type": "condition",
+          },
+        ],
+        "type": "or",
       },
-      "type": "binary",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -858,24 +850,26 @@ exports[`valid complex expressions 15`] = `
 {
   "_": "(linux|mac)&win",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "name": "mac",
+            "type": "condition",
+          },
+        ],
+        "type": "or",
+      },
+      {
+        "name": "win",
         "type": "condition",
       },
-      "operator": "or",
-      "right": {
-        "name": "mac",
-        "type": "condition",
-      },
-      "type": "binary",
-    },
-    "operator": "and",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -884,36 +878,38 @@ exports[`valid complex expressions 16`] = `
 {
   "_": "((linux&mac)|(!win&linux))",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
-        "type": "condition",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "name": "mac",
+            "type": "condition",
+          },
+        ],
+        "type": "and",
       },
-      "operator": "and",
-      "right": {
-        "name": "mac",
-        "type": "condition",
+      {
+        "children": [
+          {
+            "child": {
+              "name": "win",
+              "type": "condition",
+            },
+            "type": "not",
+          },
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+        ],
+        "type": "and",
       },
-      "type": "binary",
-    },
-    "operator": "or",
-    "right": {
-      "left": {
-        "operand": {
-          "name": "win",
-          "type": "condition",
-        },
-        "operator": "not",
-        "type": "unary",
-      },
-      "operator": "and",
-      "right": {
-        "name": "linux",
-        "type": "condition",
-      },
-      "type": "binary",
-    },
-    "type": "binary",
+    ],
+    "type": "or",
   },
 }
 `;
@@ -922,36 +918,38 @@ exports[`valid complex expressions 17`] = `
 {
   "_": "((linux&(!mac))&((win|linux)))",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
-        "type": "condition",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "child": {
+              "name": "mac",
+              "type": "condition",
+            },
+            "type": "not",
+          },
+        ],
+        "type": "and",
       },
-      "operator": "and",
-      "right": {
-        "operand": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "operator": "not",
-        "type": "unary",
+      {
+        "children": [
+          {
+            "name": "win",
+            "type": "condition",
+          },
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+        ],
+        "type": "or",
       },
-      "type": "binary",
-    },
-    "operator": "and",
-    "right": {
-      "left": {
-        "name": "win",
-        "type": "condition",
-      },
-      "operator": "or",
-      "right": {
-        "name": "linux",
-        "type": "condition",
-      },
-      "type": "binary",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -960,24 +958,23 @@ exports[`valid complex expressions 18`] = `
 {
   "_": "!linux&!mac",
   "ast": {
-    "left": {
-      "operand": {
-        "name": "linux",
-        "type": "condition",
+    "children": [
+      {
+        "child": {
+          "name": "linux",
+          "type": "condition",
+        },
+        "type": "not",
       },
-      "operator": "not",
-      "type": "unary",
-    },
-    "operator": "and",
-    "right": {
-      "operand": {
-        "name": "mac",
-        "type": "condition",
+      {
+        "child": {
+          "name": "mac",
+          "type": "condition",
+        },
+        "type": "not",
       },
-      "operator": "not",
-      "type": "unary",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -986,28 +983,29 @@ exports[`valid complex expressions 19`] = `
 {
   "_": "(linux|!mac)&win",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "child": {
+              "name": "mac",
+              "type": "condition",
+            },
+            "type": "not",
+          },
+        ],
+        "type": "or",
+      },
+      {
+        "name": "win",
         "type": "condition",
       },
-      "operator": "or",
-      "right": {
-        "operand": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "operator": "not",
-        "type": "unary",
-      },
-      "type": "binary",
-    },
-    "operator": "and",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+    ],
+    "type": "and",
   },
 }
 `;
@@ -1016,32 +1014,32 @@ exports[`valid complex expressions 20`] = `
 {
   "_": "!(!linux&mac)|win",
   "ast": {
-    "left": {
-      "operand": {
-        "left": {
-          "operand": {
-            "name": "linux",
-            "type": "condition",
-          },
-          "operator": "not",
-          "type": "unary",
+    "children": [
+      {
+        "child": {
+          "children": [
+            {
+              "child": {
+                "name": "linux",
+                "type": "condition",
+              },
+              "type": "not",
+            },
+            {
+              "name": "mac",
+              "type": "condition",
+            },
+          ],
+          "type": "and",
         },
-        "operator": "and",
-        "right": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "type": "binary",
+        "type": "not",
       },
-      "operator": "not",
-      "type": "unary",
-    },
-    "operator": "or",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+      {
+        "name": "win",
+        "type": "condition",
+      },
+    ],
+    "type": "or",
   },
 }
 `;
@@ -1050,44 +1048,47 @@ exports[`valid complex expressions 21`] = `
 {
   "_": "((linux|mac)&(!win|linux))&win",
   "ast": {
-    "left": {
-      "left": {
-        "left": {
-          "name": "linux",
-          "type": "condition",
-        },
-        "operator": "or",
-        "right": {
-          "name": "mac",
-          "type": "condition",
-        },
-        "type": "binary",
-      },
-      "operator": "and",
-      "right": {
-        "left": {
-          "operand": {
-            "name": "win",
-            "type": "condition",
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "name": "linux",
+                "type": "condition",
+              },
+              {
+                "name": "mac",
+                "type": "condition",
+              },
+            ],
+            "type": "or",
           },
-          "operator": "not",
-          "type": "unary",
-        },
-        "operator": "or",
-        "right": {
-          "name": "linux",
-          "type": "condition",
-        },
-        "type": "binary",
+          {
+            "children": [
+              {
+                "child": {
+                  "name": "win",
+                  "type": "condition",
+                },
+                "type": "not",
+              },
+              {
+                "name": "linux",
+                "type": "condition",
+              },
+            ],
+            "type": "or",
+          },
+        ],
+        "type": "and",
       },
-      "type": "binary",
-    },
-    "operator": "and",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+      {
+        "name": "win",
+        "type": "condition",
+      },
+    ],
+    "type": "and",
   },
 }
 `;
@@ -1239,12 +1240,11 @@ exports[`edge case expressions 2`] = `
 {
   "_": "!b",
   "ast": {
-    "operand": {
+    "child": {
       "name": "b",
       "type": "condition",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -1263,12 +1263,11 @@ exports[`edge case expressions 4`] = `
 {
   "_": "!thisIsAnotherVeryLongConditionName",
   "ast": {
-    "operand": {
+    "child": {
       "name": "thisIsAnotherVeryLongConditionName",
       "type": "condition",
     },
-    "operator": "not",
-    "type": "unary",
+    "type": "not",
   },
 }
 `;
@@ -1297,24 +1296,26 @@ exports[`edge case expressions 7`] = `
 {
   "_": "linux&mac|win",
   "ast": {
-    "left": {
-      "left": {
-        "name": "linux",
+    "children": [
+      {
+        "children": [
+          {
+            "name": "linux",
+            "type": "condition",
+          },
+          {
+            "name": "mac",
+            "type": "condition",
+          },
+        ],
+        "type": "and",
+      },
+      {
+        "name": "win",
         "type": "condition",
       },
-      "operator": "and",
-      "right": {
-        "name": "mac",
-        "type": "condition",
-      },
-      "type": "binary",
-    },
-    "operator": "or",
-    "right": {
-      "name": "win",
-      "type": "condition",
-    },
-    "type": "binary",
+    ],
+    "type": "or",
   },
 }
 `;

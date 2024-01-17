@@ -2,10 +2,12 @@ import { expect } from "bun:test";
 import postcss from "postcss";
 import tailwindcss from "tailwindcss";
 
+import type { Node } from "../ast.js";
 import {
 	type TailwindIfOptions as IfVariantsOptions,
 	ifVariants,
 } from "../index.js";
+import { optimize } from "../optimizer.js";
 import { parse } from "../parser.js";
 import { buildSelector } from "../selector-builder.js";
 
@@ -72,8 +74,41 @@ export function expectSelector(expression: string, complex = false) {
 	expect({
 		_: expression,
 		selector: buildSelector(
-			parse(expression),
+			optimize(parse(expression)),
 			complex ? CONDITIONS_COMPLEX : CONDITIONS_SIMPLE,
 		),
 	}).toMatchSnapshot();
+}
+
+function indent(lines: string) {
+	return lines
+		.split("\n")
+		.map((line) => `  ${line}`)
+		.join("\n");
+}
+function element(type: Node["type"], children: string) {
+	return `${type.toUpperCase()} (\n${indent(children)}\n)`;
+}
+
+function renderOptNodes(node: Node): string {
+	switch (node.type) {
+		case "and":
+		case "or":
+		case "nor": {
+			return element(node.type, node.children.map(renderOptNodes).join("\n"));
+		}
+		case "not":
+			return element("not", renderOptNodes(node.child));
+		case "condition":
+			return node.name;
+	}
+}
+
+export function expectOptimization(node: Node) {
+	let output = "\n-- input --\n\n";
+	output += renderOptNodes(node);
+	output += "\n\n-- output --\n\n";
+	output += renderOptNodes(optimize(node));
+	output += "\n";
+	expect(output).toMatchSnapshot();
 }
